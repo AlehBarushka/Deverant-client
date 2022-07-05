@@ -1,13 +1,9 @@
 import React from 'react';
 
-import { Button } from 'react-bootstrap';
+import Header from './components/Header';
 
 const App = () => {
-  return (
-    <div className='text-center'>
-      <Button>Test</Button>
-    </div>
-  );
+  return <Header />;
 };
 
 export default App;
