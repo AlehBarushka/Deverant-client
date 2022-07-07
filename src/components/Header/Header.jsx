@@ -3,10 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { NAV_ITEMS } from '../../constants/navbar';
 
-import styles from './Header.module.css';
 import { MdBarChart } from 'react-icons/md';
-import { BiLogIn, BiEditAlt, BiLogOut } from 'react-icons/bi';
-import { Container, Navbar, Nav, NavbarBrand, Button, NavLink, NavItem } from 'react-bootstrap';
+import { Container, Navbar, Nav, NavbarBrand, NavLink, NavItem } from 'react-bootstrap';
+
+import AuthButtons from '../Buttons/AuthButtons';
+import LogoutButton from '../Buttons/LogoutButton';
 
 const Header = () => {
   const location = useLocation();
@@ -21,7 +22,7 @@ const Header = () => {
     ));
 
   return (
-    <Navbar collapseOnSelect className={styles.header} expand='md' variant='dark'>
+    <Navbar collapseOnSelect className='header' expand='md' variant='dark'>
       <Container>
         <NavbarBrand className='pt-0 d-flex align-items-center' as={Link} to='/'>
           <MdBarChart className='me-1 fs-3' />
@@ -32,34 +33,7 @@ const Header = () => {
           <Nav activeKey={location.pathname} className='me-auto my-1'>
             {getNavItems()}
           </Nav>
-          <Button
-            onClick={() => alert('work')}
-            variant='outline-light'
-            size='sm'
-            className={`me-1 ${styles.button}`}
-            as={Link}
-            to={'/login'}>
-            <BiLogIn className='me-1 fs-5' />
-            Login
-          </Button>
-          <Button
-            onClick={() => alert('work')}
-            variant='outline-light'
-            size='sm'
-            className={`me-1 ${styles.button}`}
-            as={Link}
-            to={'/signup'}>
-            <BiEditAlt className='me-1 fs-5' />
-            SignUp
-          </Button>
-          <Button
-            className={`me-1 ${styles.button}`}
-            onClick={() => alert('work')}
-            variant='outline-light'
-            size='sm'>
-            <BiLogOut className='me-1 fs-5' />
-            Logout
-          </Button>
+          {true ? <AuthButtons /> : <LogoutButton />}
         </Navbar.Collapse>
       </Container>
     </Navbar>

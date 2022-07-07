@@ -1,3 +1,22 @@
 body {
-  font-family: 'Ubuntu', sans-serif !important;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.header {
+  background-color: purple;
+}
+
+.header-button {
+  color: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.header-button:hover,
+.header-button:active {
+  color: purple;
+  border-color: purple;
+}
+
+.auth-title {
+  color: purple;
 }
