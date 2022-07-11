@@ -20,7 +20,6 @@ function* login({ payload }) {
 
     yield put(setUserAC(userObj));
 
-    yield put(setUserAC(userObj));
     yield put(loadingSuccessAC());
   } catch (error) {
     //if returns an error with the status false
