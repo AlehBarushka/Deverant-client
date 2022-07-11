@@ -1,15 +1,16 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import AuthPage from './components/Auth/AuthPage';
 import Header from './components/Header';
+import AuthContainer from './containers/AuthContainer';
 
 const App = () => {
   return (
     <>
       <Header />
       <Routes>
-        <Route path='/auth/:type' element={<AuthPage />} />
+        <Route path='/' element={<Navigate to={'/statistics'} />} />
+        <Route path='/auth/:type' element={<AuthContainer />} />
       </Routes>
     </>
   );
