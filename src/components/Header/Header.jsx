@@ -9,7 +9,7 @@ import { Container, Navbar, Nav, NavbarBrand, NavLink, NavItem } from 'react-boo
 import AuthButtons from '../Buttons/AuthButtons';
 import LogoutButton from '../Buttons/LogoutButton';
 
-const Header = () => {
+const Header = ({ isAuthenticated }) => {
   const location = useLocation();
 
   const getNavItems = () =>
@@ -33,7 +33,7 @@ const Header = () => {
           <Nav activeKey={location.pathname} className='me-auto my-1'>
             {getNavItems()}
           </Nav>
-          {true ? <AuthButtons /> : <LogoutButton />}
+          {isAuthenticated ? <LogoutButton /> : <AuthButtons />}
         </Navbar.Collapse>
       </Container>
     </Navbar>
