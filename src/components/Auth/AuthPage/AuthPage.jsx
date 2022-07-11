@@ -1,8 +1,7 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useParams, useNavigate, Navigate } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 
-import { DEFAULT_SELCTED_LINK, NAV_KEYS } from '../../../constants/navbar';
+import { DEFAULT_SELCTED_LINK } from '../../../constants/navbar';
 
 import { Col, Container, Row } from 'react-bootstrap';
 
