@@ -1,4 +1,4 @@
-import { GET_LOADING_PENDING, GET_LOADING_SUCCESS } from '../actions';
+import { LOADING_PENDING, LOADING_SUCCESS } from '../actions';
 
 const initialState = {
   isLoading: false,
@@ -6,11 +6,11 @@ const initialState = {
 
 const aplicationReducer = (state = initialState, { type }) => {
   switch (type) {
-    case GET_LOADING_SUCCESS: {
+    case LOADING_PENDING: {
       return { ...state, isLoading: true };
     }
 
-    case GET_LOADING_PENDING: {
+    case LOADING_SUCCESS: {
       return { ...state, isLoading: false };
     }
 
