@@ -1,31 +1,28 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Navigate } from 'react-router-dom';
 
-import { NAV_KEYS } from '../../../constants/navbar';
+import { DEFAULT_SELCTED_LINK, NAV_KEYS } from '../../../constants/navbar';
 
 import { Col, Container, Row } from 'react-bootstrap';
 
 import SignUpForm from '../SignUpForm';
 import LoginForm from '../LoginForm';
 
-const AuthPage = ({ auth, login, signUp, setUser }) => {
+const AuthPage = ({ auth, isLoading, login, signUp }) => {
   const { type } = useParams();
+  const isAuthenticated = auth.isAuthenticated;
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    auth.isAuthenticated && navigate(NAV_KEYS.statistics, { replace: true });
-  }, [auth.isAuthenticated, navigate]);
-
-  return (
+  return isAuthenticated ? (
+    <Navigate to={DEFAULT_SELCTED_LINK} />
+  ) : (
     <Container className='mt-5'>
       <Row className='justify-content-center'>
         <Col lg={6}>
           {type === 'registration' ? (
-            <SignUpForm auth={auth} signUp={signUp} setUser={setUser} />
+            <SignUpForm isLoading={isLoading} signUp={signUp} />
           ) : (
-            <LoginForm auth={auth} login={login} setUser={setUser} />
+            <LoginForm isLoading={isLoading} login={login} />
           )}
         </Col>
       </Row>

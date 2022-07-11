@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { Button, Container, Form } from 'react-bootstrap';
 import { BiLogIn } from 'react-icons/bi';
 
-const SignUpForm = ({ login }) => {
+const SignUpForm = ({ login, isLoading }) => {
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -42,7 +42,9 @@ const SignUpForm = ({ login }) => {
             onChange={formik.handleChange}
           />
         </Form.Group>
-        <Button type='submit'>Login</Button>
+        <Button disabled={isLoading} type='submit'>
+          Login
+        </Button>
       </Form>
     </Container>
   );

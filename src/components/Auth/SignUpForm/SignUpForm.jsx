@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { Button, Container, Form } from 'react-bootstrap';
 import { BiEditAlt } from 'react-icons/bi';
 
-const SignUpForm = ({ signUp }) => {
+const SignUpForm = ({ signUp, isLoading }) => {
   const formik = useFormik({
     initialValues: {
       userName: '',
@@ -57,7 +57,9 @@ const SignUpForm = ({ signUp }) => {
           <Form.Label className='mb-1'>Confirm password:</Form.Label>
           <Form.Control name='confirmPassword' type='password' placeholder='Confirm password' />
         </Form.Group> */}
-        <Button type='submit'>Sign Up</Button>
+        <Button disabled={isLoading} type='submit'>
+          Sign Up
+        </Button>
       </Form>
     </Container>
   );
