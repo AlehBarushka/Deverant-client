@@ -4,20 +4,24 @@ import { useFormik } from 'formik';
 import { Button, Container, Form } from 'react-bootstrap';
 import { BiEditAlt } from 'react-icons/bi';
 
+import { signUpValidation } from '../../../utils/formValidation';
+
 const SignUpForm = ({ signUp, isLoading }) => {
   const formik = useFormik({
     initialValues: {
       userName: '',
       email: '',
       password: '',
+      passwordConfirm: '',
     },
     onSubmit: registrationData => {
       signUp(registrationData);
     },
+    validationSchema: signUpValidation,
   });
 
   return (
-    <Container className='shadow p-5 rounded border'>
+    <Container className='p-5'>
       <Form noValidate onSubmit={formik.handleSubmit}>
         <h3 className='text-center mb-3 auth-title'>
           <BiEditAlt className='me-1 fs-5' />
@@ -31,7 +35,9 @@ const SignUpForm = ({ signUp, isLoading }) => {
             placeholder='Billy'
             value={formik.values.userName}
             onChange={formik.handleChange}
+            isInvalid={formik.errors?.userName && formik.touched?.userName}
           />
+          <Form.Control.Feedback type='invalid'>{formik.errors.userName}</Form.Control.Feedback>
         </Form.Group>
         <Form.Group className='mb-3'>
           <Form.Label className='mb-1'>Email:</Form.Label>
@@ -41,7 +47,9 @@ const SignUpForm = ({ signUp, isLoading }) => {
             placeholder='name@example.com'
             value={formik.values.email}
             onChange={formik.handleChange}
+            isInvalid={formik.errors?.email && formik.touched?.email}
           />
+          <Form.Control.Feedback type='invalid'>{formik.errors.email}</Form.Control.Feedback>
         </Form.Group>
         <Form.Group className='mb-3'>
           <Form.Label className='mb-1'>Password:</Form.Label>
@@ -51,13 +59,25 @@ const SignUpForm = ({ signUp, isLoading }) => {
             placeholder='Password'
             value={formik.values.password}
             onChange={formik.handleChange}
+            isInvalid={formik.errors?.password && formik.touched?.password}
           />
+          <Form.Control.Feedback type='invalid'>{formik.errors.password}</Form.Control.Feedback>
         </Form.Group>
-        {/* <Form.Group className='mb-3'>
+        <Form.Group className='mb-3'>
           <Form.Label className='mb-1'>Confirm password:</Form.Label>
-          <Form.Control name='confirmPassword' type='password' placeholder='Confirm password' />
-        </Form.Group> */}
-        <Button disabled={isLoading} type='submit'>
+          <Form.Control
+            name='passwordConfirm'
+            type='password'
+            placeholder='Confirm password'
+            value={formik.values.passwordConfirm}
+            onChange={formik.handleChange}
+            isInvalid={formik.errors?.passwordConfirm && formik.touched?.passwordConfirm}
+          />
+          <Form.Control.Feedback type='invalid'>
+            {formik.errors.passwordConfirm}
+          </Form.Control.Feedback>
+        </Form.Group>
+        <Button variant='secondary' disabled={isLoading} type='submit'>
           Sign Up
         </Button>
       </Form>
