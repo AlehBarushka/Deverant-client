@@ -6,7 +6,7 @@ import { BiLogIn } from 'react-icons/bi';
 
 import { loginValidation } from '../../../utils/formValidation';
 
-const SignUpForm = ({ login, isLoading }) => {
+const LoginForm = ({ login, isLoading }) => {
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -57,4 +57,4 @@ const SignUpForm = ({ login, isLoading }) => {
   );
 };
 
-export default SignUpForm;
+export default LoginForm;

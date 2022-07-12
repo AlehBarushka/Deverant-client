@@ -20,7 +20,6 @@ const SignUpForm = ({ signUp, isLoading }) => {
     validationSchema: signUpValidation,
   });
 
-  console.log(formik.errors);
   return (
     <Container className='p-5'>
       <Form noValidate onSubmit={formik.handleSubmit}>
