@@ -4,6 +4,8 @@ import { useFormik } from 'formik';
 import { Button, Container, Form } from 'react-bootstrap';
 import { BiLogIn } from 'react-icons/bi';
 
+import { loginValidation } from '../../../utils/formValidation';
+
 const SignUpForm = ({ login, isLoading }) => {
   const formik = useFormik({
     initialValues: {
@@ -13,10 +15,11 @@ const SignUpForm = ({ login, isLoading }) => {
     onSubmit: loginData => {
       login(loginData);
     },
+    validationSchema: loginValidation,
   });
 
   return (
-    <Container className='shadow p-5 rounded border'>
+    <Container className='p-5'>
       <Form noValidate onSubmit={formik.handleSubmit}>
         <h3 className='text-center mb-3 auth-title'>
           <BiLogIn className='me-1 fs-5' />
@@ -30,7 +33,9 @@ const SignUpForm = ({ login, isLoading }) => {
             placeholder='name@example.com'
             value={formik.values.email}
             onChange={formik.handleChange}
+            isInvalid={formik.errors?.email && formik.touched?.email}
           />
+          <Form.Control.Feedback type='invalid'>{formik.errors.email}</Form.Control.Feedback>
         </Form.Group>
         <Form.Group className='mb-3'>
           <Form.Label className='mb-1'>Password:</Form.Label>
@@ -40,9 +45,11 @@ const SignUpForm = ({ login, isLoading }) => {
             placeholder='Password'
             value={formik.values.password}
             onChange={formik.handleChange}
+            isInvalid={formik.errors?.password && formik.touched?.password}
           />
+          <Form.Control.Feedback type='invalid'>{formik.errors.password}</Form.Control.Feedback>
         </Form.Group>
-        <Button disabled={isLoading} type='submit'>
+        <Button variant='secondary' disabled={isLoading} type='submit'>
           Login
         </Button>
       </Form>
