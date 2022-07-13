@@ -8,14 +8,14 @@ import store from './store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
-import App from './App';
+import AppContainer from './containers/AppContainer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <AppContainer />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

@@ -15,7 +15,7 @@ const AuthPage = ({ auth, isLoading, login, signUp }) => {
   return isAuthenticated ? (
     <Navigate to={DEFAULT_SELCTED_LINK} />
   ) : (
-    <Container className='mt-5'>
+    <Container className='mt-5 pt-5'>
       <Row className='justify-content-center'>
         <Col lg={6}>
           {type === 'registration' ? (
