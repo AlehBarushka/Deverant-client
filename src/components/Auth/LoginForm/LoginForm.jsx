@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { BiLogIn } from 'react-icons/bi';
 
 import { loginValidation } from '../../../utils/formValidation';
