@@ -1,6 +1,10 @@
 import { takeEvery, all, call, put } from 'redux-saga/effects';
 
-import { loadingPendingAC, loadingSuccessAC } from '../actionCreators/application';
+import {
+  handleShowModalAC,
+  loadingPendingAC,
+  loadingSuccessAC,
+} from '../actionCreators/application';
 import { loginFailureAC, loginSuccessAC, signUpSuccessAC } from '../actionCreators/auth';
 import { setUserAC } from '../actionCreators/user';
 
@@ -25,6 +29,7 @@ function* login({ payload }) {
     //if returns an error with the status false
     yield put(loginFailureAC(error.response?.data || error.message));
     yield put(loadingSuccessAC());
+    yield put(handleShowModalAC());
   }
 }
 
@@ -46,6 +51,7 @@ function* signUp({ payload }) {
     //if returns an error with the status false
     yield put(loginFailureAC(error.response?.data || error.message));
     yield put(loadingSuccessAC());
+    yield put(handleShowModalAC());
   }
 }
 
