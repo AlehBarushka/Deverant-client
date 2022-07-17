@@ -12,9 +12,8 @@ export const loginPendingAC = loginData => ({
   payload: loginData,
 });
 
-export const loginSuccessAC = data => ({
+export const loginSuccessAC = () => ({
   type: LOGIN_SUCCESS,
-  payload: data,
 });
 
 export const loginFailureAC = error => ({
@@ -27,9 +26,8 @@ export const signUpPendingAC = registrationData => ({
   payload: registrationData,
 });
 
-export const signUpSuccessAC = data => ({
+export const signUpSuccessAC = () => ({
   type: SIGNUP_SUCCESS,
-  payload: data,
 });
 
 export const signUpFailureAC = error => ({
