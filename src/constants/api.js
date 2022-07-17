@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://deverant-server.herokuapp.com/';
+export const BASE_URL = 'http://45.82.69.211:443/';
