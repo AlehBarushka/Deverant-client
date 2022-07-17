@@ -1,5 +1,8 @@
 import { takeEvery, all, call, put } from 'redux-saga/effects';
 
+import { LOGIN_PENDING, SIGNUP_PENDING } from '../actions';
+import { fieldName } from '../constants/localStorage';
+
 import {
   handleShowModalAC,
   loadingPendingAC,
@@ -8,16 +11,22 @@ import {
 import { loginFailureAC, loginSuccessAC, signUpSuccessAC } from '../actionCreators/auth';
 import { setUserAC } from '../actionCreators/user';
 
-import { LOGIN_PENDING, SIGNUP_PENDING } from '../actions';
 import { authAPI } from '../services/auth';
+
+import { tokenСonverter } from '../utils/authToken';
+import { setToLocalStorage } from '../utils/localStorage';
 
 function* login({ payload }) {
   try {
     yield put(loadingPendingAC());
 
-    const data = yield call(authAPI.login, payload);
+    const { secret_key, user_auth } = yield call(authAPI.login, payload);
 
-    yield put(loginSuccessAC(data));
+    const token = tokenСonverter(secret_key, user_auth);
+
+    yield call(setToLocalStorage, fieldName.AUTH_TOKEN, token);
+
+    yield put(loginSuccessAC());
 
     //the crutch, it is planned that all data will come from the back
     const userObj = { email: payload.email, userName: 'in progress...' };
@@ -37,14 +46,18 @@ function* signUp({ payload }) {
   try {
     yield put(loadingPendingAC());
 
-    const data = yield call(authAPI.createAccount, payload);
+    const { secret_key, user_auth } = yield call(authAPI.createAccount, payload);
 
-    yield put(signUpSuccessAC(data));
+    const token = tokenСonverter(secret_key, user_auth);
+
+    yield call(setToLocalStorage, fieldName.AUTH_TOKEN, token);
 
     //the crutch, it is planned that all data will come from the back
     const userObj = { email: payload.email, userName: payload.userName };
 
     yield put(setUserAC(userObj));
+
+    yield put(signUpSuccessAC());
 
     yield put(loadingSuccessAC());
   } catch (error) {
