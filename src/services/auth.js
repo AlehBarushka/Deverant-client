@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from '../constants/api';
+import { apiErrorHandle } from '../utils/errorHandling';
 
 /**
  * @typedef {Object} RegistrationData
@@ -20,16 +21,14 @@ export const authAPI = {
    * @returns {Object} An object with a token and some data.
    */
   async createAccount({ userName, email, password }) {
-    const response = await axios.post(
+    const { data } = await axios.post(
       `${BASE_URL}create_account/${email}?password=${password}&user_name=${userName}`,
     );
 
     //The server part returns the status code 200 to an existing email in the database. I had to throw the error manually
-    if (response.data.status === false) {
-      throw new Error(response.data.description);
-    }
+    apiErrorHandle(data);
 
-    return response.data;
+    return data;
   },
 
   /**
@@ -38,13 +37,20 @@ export const authAPI = {
    * @returns {Object} An object with a token.
    */
   async login({ email, password }) {
-    const response = await axios.get(`${BASE_URL}login/${email}?password=${password}`);
+    const { data } = await axios.get(`${BASE_URL}login/${email}?password=${password}`);
 
     //The server part returns the status code 200 if the email or password is incorrect. I had to throw the error manually
-    if (response.data.status === false) {
-      throw new Error(response.data.description);
-    }
+    apiErrorHandle(data);
 
-    return response.data;
+    return data;
+  },
+
+  /**
+   * @description The user logout method.
+   * @param {String} token - Auth user token.
+   * @returns {Object} An object with a status.
+   */
+  async logout(token) {
+    await axios.put(`${BASE_URL}logout/${token}`);
   },
 };
