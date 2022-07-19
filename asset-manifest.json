@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/AlehBarushka/Deverant-client/static/css/main.d943f39e.css",
+    "main.js": "/AlehBarushka/Deverant-client/static/js/main.1f5cea9e.js",
+    "index.html": "/AlehBarushka/Deverant-client/index.html",
+    "main.d943f39e.css.map": "/AlehBarushka/Deverant-client/static/css/main.d943f39e.css.map",
+    "main.1f5cea9e.js.map": "/AlehBarushka/Deverant-client/static/js/main.1f5cea9e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d943f39e.css",
+    "static/js/main.1f5cea9e.js"
+  ]
+}
