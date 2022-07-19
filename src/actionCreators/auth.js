@@ -5,6 +5,9 @@ import {
   SIGNUP_PENDING,
   SIGNUP_SUCCESS,
   SIGNUP_FAILURE,
+  LOGOUT_PENDING,
+  LOGOUT_FAILURE,
+  LOGOUT_SUCCESS,
 } from '../actions';
 
 export const loginPendingAC = loginData => ({
@@ -32,5 +35,18 @@ export const signUpSuccessAC = () => ({
 
 export const signUpFailureAC = error => ({
   type: SIGNUP_FAILURE,
+  payload: error,
+});
+
+export const logoutAC = () => ({
+  type: LOGOUT_PENDING,
+});
+
+export const logoutSuccessAC = () => ({
+  type: LOGOUT_SUCCESS,
+});
+
+export const logoutFailureAC = error => ({
+  type: LOGOUT_FAILURE,
   payload: error,
 });
