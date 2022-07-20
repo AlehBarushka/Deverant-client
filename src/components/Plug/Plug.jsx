@@ -6,7 +6,7 @@ const Plug = () => {
   return (
     <Container className='mt-5'>
       <Alert variant='secondary'>
-        <Alert.Heading>Hey, nice to see you</Alert.Heading>
+        <Alert.Heading>Hey, nice to see you!</Alert.Heading>
         <p>
           Oh yes, you have successfully read this important warning message. This content is not yet
           available. But we are working on it!
