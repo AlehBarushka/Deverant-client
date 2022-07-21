@@ -1,7 +1,12 @@
 import { connect } from 'react-redux';
+import { getAuthStatusPendingAC } from '../actionCreators/auth';
 
 import App from '../App';
 
 const mapStateToProps = state => ({ isAuthenticated: state.auth.isAuthenticated });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = {
+  getAuthStatus: getAuthStatusPendingAC,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
