@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { NAV_KEYS } from './constants/navbar';
@@ -8,7 +8,11 @@ import AuthContainer from './containers/AuthContainer';
 import HeaderContainer from './containers/HeaderContainer';
 import PrivateComponent from './components/PrivateComponent';
 
-const App = ({ isAuthenticated }) => {
+const App = ({ isAuthenticated, getAuthStatus }) => {
+  useEffect(() => {
+    getAuthStatus();
+  }, [getAuthStatus]);
+
   return (
     <>
       <HeaderContainer />

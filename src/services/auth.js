@@ -53,4 +53,15 @@ export const authAPI = {
   async logout(token) {
     await axios.put(`${BASE_URL}logout/${token}`);
   },
+
+  /**
+   * @description The method checks the user's authorization status.
+   * @param {String} token - Auth user token.
+   * @returns {Object} An object with a status, email, and userName.
+   */
+  async authStatus(token) {
+    const { data } = await axios.get(`${BASE_URL}getMe/${token}`);
+
+    return data;
+  },
 };

@@ -1,11 +1,4 @@
-import {
-  LOGIN_FAILURE,
-  LOGIN_SUCCESS,
-  LOGOUT_FAILURE,
-  LOGOUT_SUCCESS,
-  SIGNUP_FAILURE,
-  SIGNUP_SUCCESS,
-} from '../actions';
+import { AUTH_SUCCESS, AUTH_FAILURE, LOGOUT_FAILURE, LOGOUT_SUCCESS } from '../actions';
 
 const initialState = {
   isAuthenticated: false,
@@ -14,12 +7,10 @@ const initialState = {
 
 const authReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case LOGIN_SUCCESS:
-    case SIGNUP_SUCCESS:
+    case AUTH_SUCCESS:
       return { ...state, isAuthenticated: true, error: null };
 
-    case LOGIN_FAILURE:
-    case SIGNUP_FAILURE:
+    case AUTH_FAILURE:
     case LOGOUT_FAILURE:
       return { ...state, error: payload };
 
