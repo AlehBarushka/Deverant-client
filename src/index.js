@@ -12,6 +12,7 @@ import AppContainer from './containers/AppContainer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  //React.StrictMode - renders components twice on dev!!
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
