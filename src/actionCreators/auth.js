@@ -1,27 +1,21 @@
 import {
   LOGIN_PENDING,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
   SIGNUP_PENDING,
-  SIGNUP_SUCCESS,
-  SIGNUP_FAILURE,
+  AUTH_SUCCESS,
+  AUTH_FAILURE,
   LOGOUT_PENDING,
   LOGOUT_FAILURE,
   LOGOUT_SUCCESS,
+  GET_AUTH_STATUS_PENDING,
 } from '../actions';
+
+export const getAuthStatusPendingAC = () => ({
+  type: GET_AUTH_STATUS_PENDING,
+});
 
 export const loginPendingAC = loginData => ({
   type: LOGIN_PENDING,
   payload: loginData,
-});
-
-export const loginSuccessAC = () => ({
-  type: LOGIN_SUCCESS,
-});
-
-export const loginFailureAC = error => ({
-  type: LOGIN_FAILURE,
-  payload: error,
 });
 
 export const signUpPendingAC = registrationData => ({
@@ -29,12 +23,12 @@ export const signUpPendingAC = registrationData => ({
   payload: registrationData,
 });
 
-export const signUpSuccessAC = () => ({
-  type: SIGNUP_SUCCESS,
+export const authSuccessAC = () => ({
+  type: AUTH_SUCCESS,
 });
 
-export const signUpFailureAC = error => ({
-  type: SIGNUP_FAILURE,
+export const authFailureAC = error => ({
+  type: AUTH_FAILURE,
   payload: error,
 });
 
