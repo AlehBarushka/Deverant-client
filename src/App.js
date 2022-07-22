@@ -1,14 +1,34 @@
-import React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import ProjectList from './pages/ProjectList';
+import { NAV_KEYS } from './constants/navbar';
 
-const App = () => {
+import Plug from './components/Plug';
+import AuthContainer from './containers/AuthContainer';
+import HeaderContainer from './containers/HeaderContainer';
+import PrivateComponent from './components/PrivateComponent';
+
+const App = ({ isAuthenticated, getAuthStatus }) => {
+  useEffect(() => {
+    getAuthStatus();
+  }, [getAuthStatus]);
+
   return (
-    <Routes>
-      <Route path='/' element={<Navigate to={'/project/list'} />} />
-      <Route path='/project/list' element={<ProjectList />} />
-    </Routes>
+    <>
+      <HeaderContainer />
+      <Routes>
+        <Route path='/' element={<Navigate to={NAV_KEYS.statistics} />} />
+        <Route path='/auth/:type' element={<AuthContainer />} />
+        <Route
+          path={NAV_KEYS.statistics}
+          element={<PrivateComponent component={Plug} isAuthenticated={isAuthenticated} />}
+        />
+        <Route
+          path={NAV_KEYS.projects}
+          element={<PrivateComponent component={Plug} isAuthenticated={isAuthenticated} />}
+        />
+      </Routes>
+    </>
   );
 };
 
