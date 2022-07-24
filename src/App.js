@@ -7,6 +7,7 @@ import Plug from './components/Plug';
 import AuthContainer from './containers/AuthContainer';
 import HeaderContainer from './containers/HeaderContainer';
 import PrivateComponent from './components/PrivateComponent';
+import ProjectListContainer from './containers/ProjectListContainer';
 
 const App = ({ isAuthenticated, getAuthStatus }) => {
   useEffect(() => {
@@ -25,7 +26,9 @@ const App = ({ isAuthenticated, getAuthStatus }) => {
         />
         <Route
           path={NAV_KEYS.projects}
-          element={<PrivateComponent component={Plug} isAuthenticated={isAuthenticated} />}
+          element={
+            <PrivateComponent component={ProjectListContainer} isAuthenticated={isAuthenticated} />
+          }
         />
       </Routes>
     </>
