@@ -5,6 +5,6 @@ import { projectSaga } from './projects';
 
 function* rootSaga() {
   yield all([authSaga(), projectSaga()]);
-
+}
 
 export default rootSaga;

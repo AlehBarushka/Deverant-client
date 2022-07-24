@@ -9,7 +9,6 @@ import HeaderContainer from './containers/HeaderContainer';
 import PrivateComponent from './components/PrivateComponent';
 import ProjectListContainer from './containers/ProjectListContainer';
 
-
 const App = ({ isAuthenticated, getAuthStatus }) => {
   useEffect(() => {
     getAuthStatus();
@@ -30,7 +29,6 @@ const App = ({ isAuthenticated, getAuthStatus }) => {
           element={
             <PrivateComponent component={ProjectListContainer} isAuthenticated={isAuthenticated} />
           }
-          element={<PrivateComponent component={Plug} isAuthenticated={isAuthenticated} />}
         />
       </Routes>
     </>
