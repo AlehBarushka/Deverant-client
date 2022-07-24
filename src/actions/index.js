@@ -1,8 +1,10 @@
+
 //Application
 export const LOADING_PENDING = 'LOADING_PENDING';
 export const LOADING_SUCCESS = 'LOADING_SUCCESS';
 export const HANDLE_SHOW_MODAL = 'HANDLE_SHOW_MODAL';
 export const HANDLE_CLOSE_MODAL = 'HANDLE_CLOSE_MODAL';
+
 
 //Authentication
 export const GET_AUTH_STATUS_PENDING = 'GET_AUTH_STATUS_PENDING';
@@ -14,6 +16,7 @@ export const LOGOUT_PENDING = 'LOGOUT_PENDING';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
+
 //User
 export const SET_USER = 'SET_USER';
 
@@ -21,3 +24,5 @@ export const SET_USER = 'SET_USER';
 export const GET_PROJECTS_PENDING = 'GET_PROJECTS_PENDING';
 export const GET_PROJECTS_SUCCESS = 'GET_PROJECTS_SUCCESS';
 export const GET_PROJECTS_FAILURE = 'GET_PROJECTS_FAILURE';
+
+
