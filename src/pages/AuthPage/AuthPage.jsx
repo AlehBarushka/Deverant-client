@@ -1,14 +1,14 @@
 import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 
-import { DEFAULT_SELCTED_LINK } from '../../../constants/navbar';
-import { MODAL_TITLE_ICON, MODAL_TITLE_TEXT } from '../../../constants/modal';
+import { DEFAULT_SELCTED_LINK } from '../../constants/navbar';
+import { MODAL_TITLE_ICON, MODAL_TITLE_TEXT } from '../../constants/modal';
 
 import { Col, Container, Row } from 'react-bootstrap';
 
-import SignUpForm from '../SignUpForm';
-import LoginForm from '../LoginForm';
-import NotificationModal from '../../NotificationModal';
+import SignUpForm from '../../components/SignUpForm';
+import LoginForm from '../../components/LoginForm';
+import NotificationModal from '../../components/NotificationModal';
 
 const AuthPage = ({ auth, isLoading, login, signUp, showModal, closeModal }) => {
   const { type } = useParams();

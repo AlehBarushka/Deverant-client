@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { handleCloseModalAC } from '../actionCreators/application';
 import { loginPendingAC, signUpPendingAC } from '../actionCreators/auth';
 
-import AuthPage from '../components/Auth/AuthPage';
+import AuthPage from '../pages/AuthPage';
 
 const mapStateToProps = state => ({
   auth: state.auth,

@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { Button, Form } from 'react-bootstrap';
 import { BiEditAlt } from 'react-icons/bi';
 
-import { signUpValidation } from '../../../utils/formValidation';
+import { signUpValidation } from '../../utils/formValidation';
 
 const SignUpForm = ({ signUp, isLoading }) => {
   const formik = useFormik({
