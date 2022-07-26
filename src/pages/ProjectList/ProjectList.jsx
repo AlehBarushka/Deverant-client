@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 
 import { Col, Container, Row } from 'react-bootstrap';
+
 import Loader from '../../components/Loader';
 import ProjectsCardItem from '../../components/ProjectsCardItem';
 
-const ProjectList = ({ getProjects, projects, isLoading }) => {
+const ProjectList = ({ getProjects, projects, isLoading, convertLastUpdateTime }) => {
   useEffect(() => {
     getProjects();
   }, [getProjects]);
+
   return (
     <Container className='mt-5 mb-3'>
       {isLoading ? (
@@ -19,7 +21,7 @@ const ProjectList = ({ getProjects, projects, isLoading }) => {
           {projects.length > 0 &&
             projects.map(project => (
               <Col key={project.id} lg={4} md={6}>
-                <ProjectsCardItem project={project} />
+                <ProjectsCardItem convertLastUpdateTime={convertLastUpdateTime} project={project} />
               </Col>
             ))}
         </Row>

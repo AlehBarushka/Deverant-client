@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 
 import { getProjectsAC } from '../actionCreators/projects';
 
+import { convertLastUpdateTime } from '../utils/date';
+
 import ProjectList from '../pages/ProjectList/ProjectList';
 
 const mapStateToProps = state => ({
@@ -13,4 +15,13 @@ const mapDispatchToProps = {
   getProjects: getProjectsAC,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectList);
+const mergeProps = (stateProps, { getProjects }, ownProps) => {
+  return {
+    ...ownProps,
+    ...stateProps,
+    getProjects,
+    convertLastUpdateTime,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ProjectList);

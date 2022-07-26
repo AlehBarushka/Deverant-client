@@ -1,0 +1,8 @@
+export const MINUTE_IN_MILLISECONDS = 60000;
+export const HOUR_IN_MILLISECONDS = 3600000;
+export const DAY_IN_MILLISECONDS = 86400000;
+export const MONTH_IN_MILLISECONDS = 2629800000;
+export const YEAR_IN_MILLISECONDS = 31557600000;
+
+//GMT+0300 (Moscow Standard Time)
+export const TIME_ZONE = 10800000;

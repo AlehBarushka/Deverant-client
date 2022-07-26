@@ -22,3 +22,16 @@ export const apiErrorHandle = apiResponse => {
 export const getAuthSatatusError = () => {
   throw new Error(AUTH_STATUS_ERROR);
 };
+
+/**
+ * @description The the function checks the validity of the date.
+ * @param {String} date - the date in format '2022-07-22 10:02:27.326776'.
+ * @returns {Boolean} returns true or false.
+ */
+export const dateValidator = date => {
+  if (Number.isNaN(Date.parse(date))) {
+    return false;
+  }
+
+  return true;
+};

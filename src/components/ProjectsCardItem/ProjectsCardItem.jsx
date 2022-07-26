@@ -2,7 +2,9 @@ import React from 'react';
 
 import { Card, ProgressBar } from 'react-bootstrap';
 
-const ProjectsCardItem = ({ project }) => {
+const ProjectsCardItem = ({ project, convertLastUpdateTime }) => {
+  const lastUpdateTime = convertLastUpdateTime(project.lust_activity);
+
   return (
     <Card>
       <Card.Header>
@@ -14,7 +16,7 @@ const ProjectsCardItem = ({ project }) => {
         <Card.Text>{project.description}</Card.Text>
       </Card.Body>
       <Card.Footer>
-        <span className='text-muted'>Last update 3 min ago</span>
+        <span className='text-muted'>{lastUpdateTime}</span>
       </Card.Footer>
     </Card>
   );
