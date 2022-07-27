@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { logoutAC } from '../actionCreators/auth';
 
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 
 const mapStateToProps = state => ({ isAuthenticated: state.auth.isAuthenticated });
 
