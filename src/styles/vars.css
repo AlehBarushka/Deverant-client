@@ -1,0 +1,4 @@
+:root {
+  /* -- Use css variables to declare site colors -- */
+  --main-color: purple;
+}

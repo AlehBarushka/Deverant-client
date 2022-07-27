@@ -8,7 +8,7 @@ body {
 }
 
 .header {
-  background-color: purple;
+  background-color: var(--main-color);
 }
 
 .header-button {
@@ -18,12 +18,12 @@ body {
 
 .header-button:hover,
 .header-button:active {
-  color: purple;
-  border-color: purple;
+  color: var(--main-color);
+  border-color: var(--main-color);
 }
 
 .auth-title {
-  color: purple;
+  color: var(--main-color);
 }
 
 .form-control:focus {
@@ -32,6 +32,6 @@ body {
 }
 
 .spinner-border {
-  border-color: purple;
+  border-color: var(--main-color);
   border-right-color: transparent;
 }
