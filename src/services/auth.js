@@ -1,6 +1,6 @@
 import axios from 'axios';
+
 import { BASE_URL } from '../constants/api';
-import { apiErrorHandle } from '../utils/errorHandling';
 
 /**
  * @typedef {Object} RegistrationData
@@ -25,9 +25,6 @@ export const authAPI = {
       `${BASE_URL}create_account/${email}?password=${password}&user_name=${userName}`,
     );
 
-    //The server part returns the status code 200 to an existing email in the database. I had to throw the error manually
-    apiErrorHandle(data);
-
     return data;
   },
 
@@ -38,9 +35,6 @@ export const authAPI = {
    */
   async login({ email, password }) {
     const { data } = await axios.get(`${BASE_URL}login/${email}?password=${password}`);
-
-    //The server part returns the status code 200 if the email or password is incorrect. I had to throw the error manually
-    apiErrorHandle(data);
 
     return data;
   },

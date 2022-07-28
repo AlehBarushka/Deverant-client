@@ -21,7 +21,7 @@ import { authAPI } from '../services/auth';
 
 import { tokenСonverter } from '../utils/authToken';
 import { getItemFromLocalStorage, setItemToLocalStorage } from '../utils/localStorage';
-import { getAuthSatatusError } from '../utils/errorHandling';
+import { apiResponseErrorDataConverter, getAuthSatatusError } from '../utils/errorHandling';
 
 function* login({ payload }) {
   try {
@@ -29,12 +29,14 @@ function* login({ payload }) {
 
     const { secret_key, user_auth } = yield call(authAPI.login, payload);
 
-    const token = tokenСonverter(secret_key, user_auth);
+    const token = yield tokenСonverter(secret_key, user_auth);
     yield call(setItemToLocalStorage, KEY_NAMES.AUTH_TOKEN, token);
 
     yield put(getAuthStatusPendingAC());
-  } catch (error) {
-    yield put(authFailureAC(error.message));
+  } catch ({ response: { data } }) {
+    const errorMessage = yield apiResponseErrorDataConverter(data);
+
+    yield put(authFailureAC(errorMessage));
     yield put(loadingSuccessAC());
     yield put(handleShowModalAC());
   }
@@ -46,12 +48,14 @@ function* signUp({ payload }) {
 
     const { secret_key, user_auth } = yield call(authAPI.createAccount, payload);
 
-    const token = tokenСonverter(secret_key, user_auth);
+    const token = yield tokenСonverter(secret_key, user_auth);
     yield call(setItemToLocalStorage, KEY_NAMES.AUTH_TOKEN, token);
 
     yield put(getAuthStatusPendingAC());
-  } catch (error) {
-    yield put(authFailureAC(error.message));
+  } catch ({ response: { data } }) {
+    const errorMessage = yield apiResponseErrorDataConverter(data);
+
+    yield put(authFailureAC(errorMessage));
     yield put(loadingSuccessAC());
     yield put(handleShowModalAC());
   }
@@ -61,7 +65,7 @@ function* logout() {
   try {
     yield put(loadingPendingAC());
 
-    const token = getItemFromLocalStorage(KEY_NAMES.AUTH_TOKEN);
+    const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
 
     yield call(authAPI.logout, token);
 
@@ -78,10 +82,10 @@ function* logout() {
 function* getAuthStatus() {
   try {
     yield put(loadingPendingAC());
-    const token = getItemFromLocalStorage(KEY_NAMES.AUTH_TOKEN);
 
+    const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
     if (!token) {
-      getAuthSatatusError();
+      yield getAuthSatatusError();
     }
 
     const { email, nickname } = yield call(authAPI.authStatus, token);

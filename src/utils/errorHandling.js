@@ -1,4 +1,4 @@
-import { AUTH_STATUS_ERROR } from '../constants/error';
+import { UNEXPECTED_API_ERROR_MESSAGE, AUTH_STATUS_ERROR } from '../constants/error';
 
 /**
  * @description The function checks the status of the response from the server.
@@ -13,6 +13,15 @@ export const apiErrorHandle = apiResponse => {
   }
 
   return 'No error detected!';
+};
+
+/**
+ * @description The function converts, if necessary, an error from the server.
+ * @param {Object|String} apiResponseErrorData - error data from server.
+ * @returns {String} returns Error message.
+ */
+export const apiResponseErrorDataConverter = apiResponseErrorData => {
+  return apiResponseErrorData.detail ? UNEXPECTED_API_ERROR_MESSAGE : apiResponseErrorData;
 };
 
 /**
