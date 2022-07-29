@@ -11,17 +11,17 @@ import { projectsAPI } from '../services/projects';
 import { getItemFromLocalStorage } from '../utils/localStorage';
 import { getAuthSatatusError } from '../utils/errorHandling';
 
-function* getProjects() {
+function* getProjects({ payload }) {
   try {
     yield put(loadingPendingAC());
 
-    const token = getItemFromLocalStorage(KEY_NAMES.AUTH_TOKEN);
+    const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
 
     if (!token) {
-      getAuthSatatusError();
+      yield getAuthSatatusError();
     }
 
-    const data = yield call(projectsAPI.getProjects, token);
+    const data = yield call(projectsAPI.getProjects, token, payload);
 
     yield put(getProjectsSucessAC(data));
 

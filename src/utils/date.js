@@ -12,8 +12,8 @@ import { dateValidator } from './errorHandling';
 
 /**
  * @description The function convert the time of the last update to a string depending on the elapsed time.
- * @param {String} date - the time of the last update in format '2022-07-22 10:02:27.326776'.
- * @returns {String} returns the time of the last update in the format 'Last update 1 minute ago'.
+ * @param {String} date - The time of the last update in format '2022-07-22 10:02:27.326776'.
+ * @returns {String} The time of the last update in the format 'Last update 1 minute ago'.
  * @example
  * // returns 'Last update 1 hour ago'
  * convertLastUpdateTime('2022-07-26 10:41:34.488091')

@@ -10,7 +10,7 @@ export const setItemToLocalStorage = (keyName, value = '') => {
 /**
  * @description The function get the item from the local storage.
  * @param {String} keyName - Key name.
- * @returns {String} returns item.
+ * @returns {String} Item from local storage.
  */
 export const getItemFromLocalStorage = keyName => {
   return localStorage.getItem(keyName);

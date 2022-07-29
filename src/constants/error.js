@@ -1,4 +1,5 @@
 export const AUTH_STATUS_ERROR = 'The user is not authorized!';
+
 export const UNEXPECTED_API_ERROR_MESSAGE = 'Unexpected error!';
 
 export const LAST_UPDATE_ERROR = 'Last update error!';

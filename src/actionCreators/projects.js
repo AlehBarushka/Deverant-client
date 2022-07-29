@@ -1,7 +1,8 @@
 import { GET_PROJECTS_FAILURE, GET_PROJECTS_PENDING, GET_PROJECTS_SUCCESS } from '../actions';
 
-export const getProjectsAC = () => ({
+export const getProjectsAC = offset => ({
   type: GET_PROJECTS_PENDING,
+  payload: offset,
 });
 
 export const getProjectsSucessAC = projectsData => ({
