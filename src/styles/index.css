@@ -2,11 +2,6 @@ body {
   font-family: 'Ubuntu', sans-serif;
 }
 
-#root {
-  width: 100%;
-  height: 100vh;
-}
-
 .header {
   background-color: var(--main-color);
 }

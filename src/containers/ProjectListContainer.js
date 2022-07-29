@@ -9,6 +9,7 @@ import ProjectList from '../pages/ProjectList/ProjectList';
 const mapStateToProps = state => ({
   projects: state.projectsData.projects,
   isLoading: state.application.isLoading,
+  total: state.projectsData.total,
 });
 
 const mapDispatchToProps = {
