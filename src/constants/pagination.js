@@ -1,1 +1,1 @@
-export const LIMIT_OF_PROJECTS = 8;
+export const LIMIT_OF_PROJECTS = 9;

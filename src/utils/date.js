@@ -39,6 +39,11 @@ export const convertLastUpdateTime = date => {
   const monthsAgo = Math.floor(millisecondsAgo / MONTH_IN_MILLISECONDS);
   const yearsAgo = Math.floor(millisecondsAgo / YEAR_IN_MILLISECONDS);
 
+  //less than a minute ago
+  if (millisecondsAgo < MINUTE_IN_MILLISECONDS) {
+    return `Last update less than a minute ago`;
+  }
+
   //minutes ago
   if (millisecondsAgo < HOUR_IN_MILLISECONDS) {
     return `Last update ${minutesAgo} minute${minutesAgo > 1 ? 's' : ''} ago`;
