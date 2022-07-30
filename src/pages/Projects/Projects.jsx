@@ -8,8 +8,9 @@ import { getTotalPages } from '../../utils/pagination';
 
 import Loader from '../../components/Loader';
 import ProjectsCardItem from '../../components/ProjectsCardItem';
+import AddProject from '../../components/Buttons/AddProject';
 
-const ProjectList = ({ getProjects, projects, isLoading, convertLastUpdateTime, total }) => {
+const Projects = ({ getProjects, projects, isLoading, convertLastUpdateTime, total }) => {
   const [offset, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
 
@@ -43,8 +44,9 @@ const ProjectList = ({ getProjects, projects, isLoading, convertLastUpdateTime, 
 
   return (
     <Container className='mt-5 mb-3'>
+      <AddProject />
       {isLoading ? (
-        <div className='d-flex justify-content-center'>
+        <div className='position-absolute top-50 start-50 translate-middle'>
           <Loader />
         </div>
       ) : (
@@ -69,4 +71,4 @@ const ProjectList = ({ getProjects, projects, isLoading, convertLastUpdateTime, 
   );
 };
 
-export default ProjectList;
+export default Projects;

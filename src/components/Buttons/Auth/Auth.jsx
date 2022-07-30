@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Button } from 'react-bootstrap';
 
-const AuthButtons = () => {
+const Auth = () => {
   return (
     <>
       <Button
@@ -26,4 +26,4 @@ const AuthButtons = () => {
   );
 };
 
-export default AuthButtons;
+export default Auth;

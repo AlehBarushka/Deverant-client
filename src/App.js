@@ -7,7 +7,7 @@ import Plug from './components/Plug';
 import AuthContainer from './containers/AuthContainer';
 import HeaderContainer from './containers/HeaderContainer';
 import PrivateComponent from './components/PrivateComponent';
-import ProjectListContainer from './containers/ProjectListContainer';
+import ProjectsContainer from './containers/ProjectsContainer';
 import Footer from './components/Footer';
 
 const App = ({ isAuthenticated, getAuthStatus }) => {
@@ -28,7 +28,7 @@ const App = ({ isAuthenticated, getAuthStatus }) => {
         <Route
           path={NAV_KEYS.projects}
           element={
-            <PrivateComponent component={ProjectListContainer} isAuthenticated={isAuthenticated} />
+            <PrivateComponent component={ProjectsContainer} isAuthenticated={isAuthenticated} />
           }
         />
       </Routes>

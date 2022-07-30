@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { handleCloseModalAC } from '../actionCreators/application';
 import { loginPendingAC, signUpPendingAC } from '../actionCreators/auth';
 
-import AuthPage from '../pages/AuthPage';
+import Auth from '../pages/Auth';
 
 const mapStateToProps = state => ({
   auth: state.auth,
@@ -17,4 +17,4 @@ const mapDispatchToProps = {
   closeModal: handleCloseModalAC,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthPage);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);
