@@ -4,7 +4,7 @@ import { getProjectsAC } from '../actionCreators/projects';
 
 import { convertLastUpdateTime } from '../utils/date';
 
-import ProjectList from '../pages/ProjectList/ProjectList';
+import ProjectList from '../pages/ProjectList';
 
 const mapStateToProps = state => ({
   projects: state.projectsData.projects,

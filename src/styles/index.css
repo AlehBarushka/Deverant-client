@@ -1,5 +1,14 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 body {
   font-family: 'Ubuntu', sans-serif;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 1rem;
 }
 
 .header {
@@ -29,4 +38,21 @@ body {
 .spinner-border {
   border-color: var(--main-color);
   border-right-color: transparent;
+}
+
+.page-link,
+.page-link:hover {
+  color: var(--main-color);
+}
+
+.page-item.active .page-link {
+  background-color: var(--main-color);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.footer {
+  width: 100%;
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 0;
 }
