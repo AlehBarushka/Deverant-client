@@ -61,7 +61,7 @@ const ProjectList = ({ getProjects, projects, isLoading, convertLastUpdateTime, 
               ))}
           </Row>
           {totalOfPages > 1 && (
-            <Pagination className='justify-content-center my-5'>{getPaginationItems()}</Pagination>
+            <Pagination className='justify-content-center mt-5'>{getPaginationItems()}</Pagination>
           )}
         </>
       )}

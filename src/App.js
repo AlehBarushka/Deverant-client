@@ -8,6 +8,7 @@ import AuthContainer from './containers/AuthContainer';
 import HeaderContainer from './containers/HeaderContainer';
 import PrivateComponent from './components/PrivateComponent';
 import ProjectListContainer from './containers/ProjectListContainer';
+import Footer from './components/Footer';
 
 const App = ({ isAuthenticated, getAuthStatus }) => {
   useEffect(() => {
@@ -31,6 +32,7 @@ const App = ({ isAuthenticated, getAuthStatus }) => {
           }
         />
       </Routes>
+      <Footer />
     </>
   );
 };
