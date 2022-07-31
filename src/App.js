@@ -6,9 +6,9 @@ import { NAV_KEYS } from './constants/navbar';
 import Plug from './components/Plug';
 import AuthContainer from './containers/AuthContainer';
 import HeaderContainer from './containers/HeaderContainer';
-import PrivateComponent from './components/PrivateComponent';
 import ProjectListContainer from './containers/ProjectListContainer';
 import Footer from './components/Footer';
+import PrivateComponent from './components/PrivateComponent/PrivateComponent';
 
 const App = ({ isAuthenticated, getAuthStatus }) => {
   useEffect(() => {
