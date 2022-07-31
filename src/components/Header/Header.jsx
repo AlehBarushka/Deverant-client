@@ -6,8 +6,8 @@ import { NAV_ITEMS } from '../../constants/navbar';
 import { MdBarChart } from 'react-icons/md';
 import { Container, Navbar, Nav, NavbarBrand, NavLink, NavItem } from 'react-bootstrap';
 
-import Auth from '../Buttons/Auth';
-import Logout from '../Buttons/Logout';
+import AuthButtons from '../Buttons/AuthButtons/AuthButtons';
+import LogoutButton from '../Buttons/LogoutButton/LogoutButton';
 
 const Header = ({ isAuthenticated, logout }) => {
   const location = useLocation();
@@ -24,7 +24,7 @@ const Header = ({ isAuthenticated, logout }) => {
   return (
     <Navbar collapseOnSelect className='header' expand='md' variant='dark'>
       <Container>
-        <NavbarBrand className='pt-0 d-flex align-items-center' as={Link} to='/'>
+        <NavbarBrand className='pt-0 d-flex align-items-center'>
           <MdBarChart className='me-1 fs-3' />
           <h1 className='fs-3 mb-0'>Deverant</h1>
         </NavbarBrand>
@@ -33,7 +33,7 @@ const Header = ({ isAuthenticated, logout }) => {
           <Nav activeKey={location.pathname} className='me-auto my-1'>
             {getNavItems()}
           </Nav>
-          {isAuthenticated ? <Logout logout={logout} /> : <Auth />}
+          {isAuthenticated ? <LogoutButton logout={logout} /> : <AuthButtons />}
         </Navbar.Collapse>
       </Container>
     </Navbar>
