@@ -3,10 +3,10 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { AiOutlineFileAdd } from 'react-icons/ai';
 
-const AddProject = () => {
+const AddProjectButton = () => {
   return (
     <div className='mb-3'>
-      <Button size='sm add__project-button' onClick={() => alert('Good!')}>
+      <Button className='add__project-button' onClick={() => alert('Good!')}>
         <AiOutlineFileAdd className='me-1' />
         New
       </Button>
@@ -14,4 +14,4 @@ const AddProject = () => {
   );
 };
 
-export default AddProject;
+export default AddProjectButton;

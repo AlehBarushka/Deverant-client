@@ -8,13 +8,9 @@ import { getTotalPages } from '../../utils/pagination';
 
 import Loader from '../../components/Loader';
 import ProjectsCardItem from '../../components/ProjectsCardItem';
-import AddProject from '../../components/Buttons/AddProject';
+import AddProject from '../../components/Buttons/AddProjectButton';
 
-<<<<<<<< HEAD:src/pages/Projects/Projects.jsx
-const Projects = ({ getProjects, projects, isLoading, convertLastUpdateTime, total }) => {
-========
 const ProjectsPage = ({ getProjects, projects, isLoading, convertLastUpdateTime, total }) => {
->>>>>>>> master:src/pages/ProjectsPage/ProjectsPage.jsx
   const [offset, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
 
@@ -75,8 +71,4 @@ const ProjectsPage = ({ getProjects, projects, isLoading, convertLastUpdateTime,
   );
 };
 
-<<<<<<<< HEAD:src/pages/Projects/Projects.jsx
-export default Projects;
-========
 export default ProjectsPage;
->>>>>>>> master:src/pages/ProjectsPage/ProjectsPage.jsx
