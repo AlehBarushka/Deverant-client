@@ -4,7 +4,7 @@ import { getProjectsAC } from '../actionCreators/projects';
 
 import { convertLastUpdateTime } from '../utils/date';
 
-import ProjectList from '../pages/ProjectList/ProjectList';
+import ProjectsPage from '../pages/ProjectsPage';
 
 const mapStateToProps = state => ({
   projects: state.projectsData.projects,
@@ -25,4 +25,4 @@ const mergeProps = (stateProps, { getProjects }, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ProjectList);
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ProjectsPage);
