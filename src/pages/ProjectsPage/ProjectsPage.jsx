@@ -9,7 +9,7 @@ import { getTotalPages } from '../../utils/pagination';
 import Loader from '../../components/Loader';
 import ProjectsCardItem from '../../components/ProjectsCardItem';
 
-const ProjectList = ({ getProjects, projects, isLoading, convertLastUpdateTime, total }) => {
+const ProjectsPage = ({ getProjects, projects, isLoading, convertLastUpdateTime, total }) => {
   const [offset, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
 
@@ -17,7 +17,7 @@ const ProjectList = ({ getProjects, projects, isLoading, convertLastUpdateTime, 
 
   useEffect(() => {
     getProjects(offset);
-  }, [getProjects, offset]);
+  }, [offset, getProjects]);
 
   const changePage = page => {
     setActivePage(page);
@@ -69,4 +69,4 @@ const ProjectList = ({ getProjects, projects, isLoading, convertLastUpdateTime, 
   );
 };
 
-export default ProjectList;
+export default ProjectsPage;

@@ -1,4 +1,4 @@
-export const NAV_KEYS = { statistics: '/statistics', projects: '/projects/list' };
+export const NAV_KEYS = { statistics: '/statistics', projects: '/projects' };
 
 export const DEFAULT_SELCTED_LINK = NAV_KEYS.statistics;
 

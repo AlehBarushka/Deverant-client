@@ -24,7 +24,7 @@ const Header = ({ isAuthenticated, logout }) => {
   return (
     <Navbar collapseOnSelect className='header' expand='md' variant='dark'>
       <Container>
-        <NavbarBrand className='pt-0 d-flex align-items-center' as={Link} to='/'>
+        <NavbarBrand className='pt-0 d-flex align-items-center'>
           <MdBarChart className='me-1 fs-3' />
           <h1 className='fs-3 mb-0'>Deverant</h1>
         </NavbarBrand>
