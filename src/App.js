@@ -4,11 +4,12 @@ import { Route, Routes } from 'react-router-dom';
 import { NAV_KEYS } from './constants/navbar';
 
 import Plug from './components/Plug';
-import AuthPageContainer from './containers/AuthPageContainer';
+import AuthContainer from './containers/AuthContainer';
 import HeaderContainer from './containers/HeaderContainer';
-import ProjectsPageContainer from './containers/ProjectsPageContainer';
+import ProjectsContainer from './containers/ProjectsContainer';
 import Footer from './components/Footer';
 import PrivateRoutes from './components/PrivateRoutes/PrivateRoutes';
+import AddProjectForm from './components/Projects/AddProjectForm';
 
 const App = ({ isAuthenticated, getAuthStatus }) => {
   useEffect(() => {
@@ -21,9 +22,10 @@ const App = ({ isAuthenticated, getAuthStatus }) => {
       <Routes>
         <Route path='/' element={<PrivateRoutes isAuthenticated={isAuthenticated} />}>
           <Route path={NAV_KEYS.statistics} element={<Plug />} />
-          <Route path={NAV_KEYS.projects} element={<ProjectsPageContainer />} />
+          <Route path={NAV_KEYS.projects} element={<ProjectsContainer />} />
+          <Route path={`${NAV_KEYS.projects}/add`} element={<AddProjectForm />} />
         </Route>
-        <Route path='/auth/:type' element={<AuthPageContainer />} />
+        <Route path='/auth/:type' element={<AuthContainer />} />
       </Routes>
       <Footer />
     </>

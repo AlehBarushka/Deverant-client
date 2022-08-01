@@ -1,16 +1,16 @@
 import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 
-import { DEFAULT_SELCTED_LINK } from '../../constants/navbar';
-import { MODAL_TITLE_ICON, MODAL_TITLE_TEXT } from '../../constants/modal';
+import { DEFAULT_SELCTED_LINK } from '../../../constants/navbar';
+import { MODAL_TITLE_ICON, MODAL_TITLE_TEXT } from '../../../constants/modal';
 
 import { Col, Container, Row } from 'react-bootstrap';
 
-import SignUpForm from '../../components/SignUpForm';
-import LoginForm from '../../components/LoginForm';
-import NotificationModal from '../../components/NotificationModal';
+import SignUpForm from '../SignUpForm';
+import LoginForm from '../LoginForm';
+import NotificationModal from '../../NotificationModal';
 
-const AuthPage = ({ auth, isLoading, login, signUp, showModal, closeModal }) => {
+const AuthPage = ({ auth, isLoading, login, signUp, isModalShowing, closeModal }) => {
   const { type } = useParams();
   const { isAuthenticated, error } = auth;
 
@@ -19,7 +19,7 @@ const AuthPage = ({ auth, isLoading, login, signUp, showModal, closeModal }) => 
   ) : (
     <>
       <NotificationModal
-        show={showModal}
+        show={isModalShowing}
         title={MODAL_TITLE_TEXT.authError}
         titleIcon={MODAL_TITLE_ICON.authError}
         bodyText={error}

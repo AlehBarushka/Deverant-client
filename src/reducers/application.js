@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   isLoading: false,
-  showModal: false,
+  isModalShowing: false,
 };
 
 const aplicationReducer = (state = initialState, { type }) => {
@@ -21,11 +21,11 @@ const aplicationReducer = (state = initialState, { type }) => {
     }
 
     case HANDLE_SHOW_MODAL: {
-      return { ...state, showModal: true };
+      return { ...state, isModalShowing: true };
     }
 
     case HANDLE_CLOSE_MODAL: {
-      return { ...state, showModal: false };
+      return { ...state, isModalShowing: false };
     }
 
     default:

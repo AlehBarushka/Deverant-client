@@ -1,4 +1,10 @@
-import { GET_PROJECTS_FAILURE, GET_PROJECTS_SUCCESS, LOGOUT_SUCCESS } from '../actions';
+import {
+  CREATE_NEW_PROJECT_FAILURE,
+  CREATE_NEW_PROJECT_SUCCESS,
+  GET_PROJECTS_FAILURE,
+  GET_PROJECTS_SUCCESS,
+  LOGOUT_SUCCESS,
+} from '../actions';
 
 const initialState = {
   total: null,
@@ -12,6 +18,12 @@ const projectsReducer = (state = initialState, { type, payload }) => {
       return { ...state, projects: payload.projects, total: payload.total_count, error: null };
 
     case GET_PROJECTS_FAILURE:
+      return { ...state, error: payload };
+
+    case CREATE_NEW_PROJECT_SUCCESS:
+      return { ...state, error: null };
+
+    case CREATE_NEW_PROJECT_FAILURE:
       return { ...state, error: payload };
 
     case LOGOUT_SUCCESS:
