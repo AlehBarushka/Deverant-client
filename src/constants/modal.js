@@ -6,4 +6,5 @@ export const MODAL_TITLE_ICON = {
 
 export const MODAL_TITLE_TEXT = {
   authError: 'Authorization error!',
+  createProject: 'Create project',
 };

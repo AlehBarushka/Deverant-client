@@ -1,4 +1,11 @@
-import { GET_PROJECTS_FAILURE, GET_PROJECTS_PENDING, GET_PROJECTS_SUCCESS } from '../actions';
+import {
+  CREATE_NEW_PROJECT_FAILURE,
+  CREATE_NEW_PROJECT_PENDING,
+  CREATE_NEW_PROJECT_SUCCESS,
+  GET_PROJECTS_FAILURE,
+  GET_PROJECTS_PENDING,
+  GET_PROJECTS_SUCCESS,
+} from '../actions';
 
 export const getProjectsAC = offset => ({
   type: GET_PROJECTS_PENDING,
@@ -12,5 +19,20 @@ export const getProjectsSucessAC = projectsData => ({
 
 export const getProjectsFailureAC = error => ({
   type: GET_PROJECTS_FAILURE,
+  payload: error,
+});
+
+export const createNewProjectAC = projectData => ({
+  type: CREATE_NEW_PROJECT_PENDING,
+  payload: projectData,
+});
+
+export const createNewProjectSucessAC = projectData => ({
+  type: CREATE_NEW_PROJECT_SUCCESS,
+  payload: projectData,
+});
+
+export const createNewProjectFailureAC = error => ({
+  type: CREATE_NEW_PROJECT_FAILURE,
   payload: error,
 });

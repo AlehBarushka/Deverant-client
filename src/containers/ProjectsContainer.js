@@ -1,26 +1,36 @@
 import { connect } from 'react-redux';
 
-import { getProjectsAC } from '../actionCreators/projects';
+import { createNewProjectAC, getProjectsAC } from '../actionCreators/projects';
 
 import { convertLastUpdateTime } from '../utils/date';
 
-import ProjectsPage from '../pages/ProjectsPage';
+import ProjectsPage from '../components/Projects/ProjectsPage';
+import { handleCloseModalAC, handleShowModalAC } from '../actionCreators/application';
 
 const mapStateToProps = state => ({
-  projects: state.projectsData.projects,
-  isLoading: state.application.isLoading,
-  total: state.projectsData.total,
+  projectsData: state.projectsData,
+  application: state.application,
 });
 
 const mapDispatchToProps = {
   getProjects: getProjectsAC,
+  createNewProject: createNewProjectAC,
+  showModal: handleShowModalAC,
+  closeModal: handleCloseModalAC,
 };
 
-const mergeProps = (stateProps, { getProjects }, ownProps) => {
+const mergeProps = (
+  stateProps,
+  { getProjects, createNewProject, showModal, closeModal },
+  ownProps,
+) => {
   return {
     ...ownProps,
     ...stateProps,
     getProjects,
+    createNewProject,
+    showModal,
+    closeModal,
     convertLastUpdateTime,
   };
 };

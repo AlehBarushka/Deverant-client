@@ -22,4 +22,22 @@ export const projectsAPI = {
 
     return data;
   },
+
+  /**
+   * @description The method create a new project.
+   * @param {Srting} token - Auth user token.
+   * @param {String} name - Name of the project.
+   * @param {String} description - Description of the project.
+   * @returns {Object} An object with new project.
+   */
+  async createNewProject(token, name, description) {
+    const { data } = await axios.post(
+      `${BASE_URL}project/${token}?name=${name}&description=${description}`,
+    );
+
+    //The server part returns the status code 200 if the token is not valid. I had to throw the error manually
+    apiErrorHandle(data);
+
+    return data;
+  },
 };

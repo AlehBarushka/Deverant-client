@@ -1,10 +1,20 @@
 import { takeEvery, all, call, put } from 'redux-saga/effects';
 
-import { GET_PROJECTS_PENDING } from '../actions';
+import { CREATE_NEW_PROJECT_PENDING, GET_PROJECTS_PENDING } from '../actions';
 import { KEY_NAMES } from '../constants/localStorage';
 
-import { loadingPendingAC, loadingSuccessAC } from '../actionCreators/application';
-import { getProjectsFailureAC, getProjectsSucessAC } from '../actionCreators/projects';
+import {
+  handleCloseModalAC,
+  loadingPendingAC,
+  loadingSuccessAC,
+} from '../actionCreators/application';
+import {
+  createNewProjectFailureAC,
+  createNewProjectSucessAC,
+  getProjectsAC,
+  getProjectsFailureAC,
+  getProjectsSucessAC,
+} from '../actionCreators/projects';
 
 import { projectsAPI } from '../services/projects';
 
@@ -33,6 +43,30 @@ function* getProjects({ payload }) {
   }
 }
 
+function* createNewProject({ payload }) {
+  try {
+    const { projectName, projectDescription } = payload;
+
+    const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
+
+    if (!token) {
+      yield getAuthSatatusError();
+    }
+
+    yield call(projectsAPI.createNewProject, token, projectName, projectDescription);
+    yield put(createNewProjectSucessAC());
+
+    yield put(handleCloseModalAC());
+
+    yield put(getProjectsAC());
+  } catch (error) {
+    yield put(createNewProjectFailureAC(error.message));
+  }
+}
+
 export function projectSaga() {
-  return all([takeEvery(GET_PROJECTS_PENDING, getProjects)]);
+  return all([
+    takeEvery(GET_PROJECTS_PENDING, getProjects),
+    takeEvery(CREATE_NEW_PROJECT_PENDING, createNewProject),
+  ]);
 }

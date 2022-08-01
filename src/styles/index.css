@@ -20,6 +20,20 @@ body {
   border-color: rgba(255, 255, 255, 0.55);
 }
 
+.add__project-button {
+  background-color: var(--main-color);
+  color: rgba(255, 255, 255);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.add__project-button:hover,
+.add__project-button:active,
+.add__project-button:focus {
+  background-color: #730673;
+  border-color: var(--main-color);
+  box-shadow: 0 0 0 0.25rem #cacccf6e;
+}
+
 .header-button:hover,
 .header-button:active {
   color: var(--main-color);

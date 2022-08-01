@@ -6,8 +6,8 @@ import { NAV_ITEMS } from '../../constants/navbar';
 import { MdBarChart } from 'react-icons/md';
 import { Container, Navbar, Nav, NavbarBrand, NavLink, NavItem } from 'react-bootstrap';
 
-import AuthButtons from '../Buttons/AuthButtons/AuthButtons';
-import LogoutButton from '../Buttons/LogoutButton/LogoutButton';
+import AuthButtons from '../Auth/AuthButtons';
+import LogoutButton from '../Auth/LogoutButton';
 
 const Header = ({ isAuthenticated, logout }) => {
   const location = useLocation();

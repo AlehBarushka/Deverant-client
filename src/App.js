@@ -9,6 +9,7 @@ import HeaderContainer from './containers/HeaderContainer';
 import ProjectsContainer from './containers/ProjectsContainer';
 import Footer from './components/Footer';
 import PrivateRoutes from './components/PrivateRoutes/PrivateRoutes';
+import AddProjectForm from './components/Projects/AddProjectForm';
 
 const App = ({ isAuthenticated, getAuthStatus }) => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const App = ({ isAuthenticated, getAuthStatus }) => {
         <Route path='/' element={<PrivateRoutes isAuthenticated={isAuthenticated} />}>
           <Route path={NAV_KEYS.statistics} element={<Plug />} />
           <Route path={NAV_KEYS.projects} element={<ProjectsContainer />} />
+          <Route path={`${NAV_KEYS.projects}/add`} element={<AddProjectForm />} />
         </Route>
         <Route path='/auth/:type' element={<AuthContainer />} />
       </Routes>
