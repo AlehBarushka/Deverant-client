@@ -23,13 +23,14 @@ export const convertLastUpdateTime = date => {
     return LAST_UPDATE_DATE_ERROR;
   }
 
-  const isValidDate = dateValidator(date);
+  const dateArrWithoutDot = date.split('.');
+  const ISODateString = new Date(dateArrWithoutDot[0]).toISOString();
 
-  if (!isValidDate) {
+  if (!dateValidator(ISODateString)) {
     return INCORRECT_DATE_FORMAT;
   }
 
-  const lastUpdateTimeInMilliseconds = Date.parse(date) + TIME_ZONE;
+  const lastUpdateTimeInMilliseconds = Date.parse(ISODateString) + TIME_ZONE;
 
   const millisecondsAgo = Date.now() - lastUpdateTimeInMilliseconds;
 
