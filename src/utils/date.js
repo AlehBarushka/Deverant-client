@@ -24,7 +24,9 @@ export const convertLastUpdateTime = date => {
   }
 
   const dateArrWithoutDot = date.split('.');
-  const ISODateString = new Date(dateArrWithoutDot[0]).toISOString();
+  const validDateString = dateArrWithoutDot[0].replace(' ', 'T');
+
+  const ISODateString = new Date(validDateString).toISOString();
 
   if (!dateValidator(ISODateString)) {
     return INCORRECT_DATE_FORMAT;
