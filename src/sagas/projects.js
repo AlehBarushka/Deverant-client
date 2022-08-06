@@ -1,6 +1,10 @@
 import { takeEvery, all, call, put } from 'redux-saga/effects';
 
-import { CREATE_NEW_PROJECT_PENDING, GET_PROJECTS_PENDING } from '../actions';
+import {
+  CREATE_NEW_PROJECT_PENDING,
+  DELETE_PROJECT_PENDING,
+  GET_PROJECTS_PENDING,
+} from '../actions';
 import { KEY_NAMES } from '../constants/localStorage';
 
 import {
@@ -11,6 +15,8 @@ import {
 import {
   createNewProjectFailureAC,
   createNewProjectSucessAC,
+  deleteProjectFailureAC,
+  deleteProjectSucessAC,
   getProjectsAC,
   getProjectsFailureAC,
   getProjectsSucessAC,
@@ -64,9 +70,27 @@ function* createNewProject({ payload }) {
   }
 }
 
+function* deleteProject({ payload }) {
+  try {
+    const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
+
+    if (!token) {
+      yield getAuthSatatusError();
+    }
+
+    yield call(projectsAPI.deleteProject, token, payload);
+    yield put(deleteProjectSucessAC());
+
+    yield put(getProjectsAC());
+  } catch (error) {
+    yield put(deleteProjectFailureAC(error.message));
+  }
+}
+
 export function projectSaga() {
   return all([
     takeEvery(GET_PROJECTS_PENDING, getProjects),
     takeEvery(CREATE_NEW_PROJECT_PENDING, createNewProject),
+    takeEvery(DELETE_PROJECT_PENDING, deleteProject),
   ]);
 }

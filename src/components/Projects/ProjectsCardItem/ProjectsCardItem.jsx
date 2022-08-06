@@ -1,15 +1,21 @@
 import React from 'react';
 
-import { Card, ProgressBar } from 'react-bootstrap';
+import { RiDeleteBinLine } from 'react-icons/ri';
+import { Card, Button } from 'react-bootstrap';
 
-const ProjectsCardItem = ({ project, convertLastUpdateTime }) => {
+const ProjectsCardItem = ({ project, convertLastUpdateTime, deleteProject }) => {
   const lastUpdateTime = convertLastUpdateTime(project.lust_activity);
+
+  const handleDelete = () => {
+    deleteProject(project.id);
+  };
 
   return (
     <Card>
-      <Card.Header>
-        <span>Progress:</span>
-        <ProgressBar variant='success' now={20} />
+      <Card.Header className='d-flex justify-content-end'>
+        <Button size='sm' className='btn-delete' onClick={handleDelete}>
+          <RiDeleteBinLine />
+        </Button>
       </Card.Header>
       <Card.Body>
         <Card.Title>{project.project_name}</Card.Title>

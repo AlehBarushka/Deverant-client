@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { createNewProjectAC, getProjectsAC } from '../actionCreators/projects';
+import { createNewProjectAC, deleteProjectAC, getProjectsAC } from '../actionCreators/projects';
 
 import { convertLastUpdateTime } from '../utils/date';
 
@@ -15,13 +15,14 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getProjects: getProjectsAC,
   createNewProject: createNewProjectAC,
+  deleteProject: deleteProjectAC,
   showModal: handleShowModalAC,
   closeModal: handleCloseModalAC,
 };
 
 const mergeProps = (
   stateProps,
-  { getProjects, createNewProject, showModal, closeModal },
+  { getProjects, createNewProject, showModal, closeModal, deleteProject },
   ownProps,
 ) => {
   return {
@@ -29,6 +30,7 @@ const mergeProps = (
     ...stateProps,
     getProjects,
     createNewProject,
+    deleteProject,
     showModal,
     closeModal,
     convertLastUpdateTime,

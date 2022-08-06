@@ -74,3 +74,16 @@ body {
 .card {
   height: 100%;
 }
+
+.btn-delete {
+  background-color: var(--main-color);
+  border: var(--main-color);
+}
+
+.btn-delete:hover,
+.btn-delete:focus,
+.btn-delete:active {
+  background-color: #730673;
+  border-color: var(--main-color);
+  box-shadow: 0 0 0 0.25rem #cacccf6e;
+}
