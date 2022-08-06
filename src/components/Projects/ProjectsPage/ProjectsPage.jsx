@@ -21,6 +21,7 @@ const ProjectsPage = ({
   showModal,
   closeModal,
   createNewProject,
+  deleteProject,
 }) => {
   const [offset, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
@@ -73,6 +74,7 @@ const ProjectsPage = ({
               projects.map(project => (
                 <Col key={project.id} lg={4} md={6}>
                   <ProjectsCardItem
+                    deleteProject={deleteProject}
                     convertLastUpdateTime={convertLastUpdateTime}
                     project={project}
                   />

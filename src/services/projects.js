@@ -40,4 +40,16 @@ export const projectsAPI = {
 
     return data;
   },
+
+  /**
+   * @description The method create a new project.
+   * @param {Srting} token - Auth user token.
+   * @param {Number} id - Project id.
+   * @returns {Object} An object with success status.
+   */
+  async deleteProject(token, id) {
+    const { data } = await axios.delete(`${BASE_URL}project/${token}?project_id=${id}`);
+
+    return data;
+  },
 };
