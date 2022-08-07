@@ -2,15 +2,14 @@ import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 
 import { DEFAULT_SELCTED_LINK } from '../../../constants/navbar';
-import { MODAL_TITLE_ICON, MODAL_TITLE_TEXT } from '../../../constants/modal';
 
 import { Col, Container, Row } from 'react-bootstrap';
 
 import SignUpForm from '../SignUpForm';
 import LoginForm from '../LoginForm';
-import NotificationModal from '../../NotificationModal';
+import NotificationModal from '../../Modal/NotificationModal';
 
-const AuthPage = ({ auth, isLoading, login, signUp, isModalShowing, closeModal }) => {
+const AuthPage = ({ auth, isLoading, login, signUp, notificationModalConfig }) => {
   const { type } = useParams();
   const { isAuthenticated, error } = auth;
 
@@ -18,13 +17,7 @@ const AuthPage = ({ auth, isLoading, login, signUp, isModalShowing, closeModal }
     <Navigate to={DEFAULT_SELCTED_LINK} />
   ) : (
     <>
-      <NotificationModal
-        show={isModalShowing}
-        title={MODAL_TITLE_TEXT.authError}
-        titleIcon={MODAL_TITLE_ICON.authError}
-        bodyText={error}
-        closeModal={closeModal}
-      />
+      <NotificationModal {...notificationModalConfig}>{error}</NotificationModal>
       <Container className='mt-5 pt-5'>
         <Row className='justify-content-center'>
           <Col lg={6}>

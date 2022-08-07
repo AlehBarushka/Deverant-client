@@ -1,28 +1,44 @@
 import { connect } from 'react-redux';
 
+import { MODAL_TITLE_ICON, MODAL_TITLE_TEXT } from '../constants/modal';
+
 import { createNewProjectAC, deleteProjectAC, getProjectsAC } from '../actionCreators/projects';
 
 import { convertLastUpdateTime } from '../utils/date';
 
 import ProjectsPage from '../components/Projects/ProjectsPage';
-import { handleCloseModalAC, handleShowModalAC } from '../actionCreators/application';
+import {
+  handleCloseActionModalAC,
+  handleCloseNotificationModalAC,
+  handleShowActionModalAC,
+} from '../actionCreators/application';
 
 const mapStateToProps = state => ({
-  projectsData: state.projectsData,
-  application: state.application,
+  projects: state.projectsData.projects,
+  total: state.projectsData.total,
+  error: state.projectsData.error,
+  isLoading: state.application.isLoading,
 });
 
 const mapDispatchToProps = {
   getProjects: getProjectsAC,
   createNewProject: createNewProjectAC,
   deleteProject: deleteProjectAC,
-  showModal: handleShowModalAC,
-  closeModal: handleCloseModalAC,
+  showActionModal: handleShowActionModalAC,
+  closeActionModal: handleCloseActionModalAC,
+  closeNotificationModal: handleCloseNotificationModalAC,
 };
 
 const mergeProps = (
   stateProps,
-  { getProjects, createNewProject, showModal, closeModal, deleteProject },
+  {
+    getProjects,
+    createNewProject,
+    showActionModal,
+    closeActionModal,
+    deleteProject,
+    closeNotificationModal,
+  },
   ownProps,
 ) => {
   return {
@@ -31,8 +47,13 @@ const mergeProps = (
     getProjects,
     createNewProject,
     deleteProject,
-    showModal,
-    closeModal,
+    notificationModalConfig: {
+      title: MODAL_TITLE_TEXT.projectError,
+      titleIcon: MODAL_TITLE_ICON.projectError,
+      onClose: closeNotificationModal,
+    },
+    showActionModal,
+    closeActionModal,
     convertLastUpdateTime,
   };
 };

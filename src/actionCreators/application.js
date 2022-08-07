@@ -1,6 +1,8 @@
 import {
-  HANDLE_CLOSE_MODAL,
-  HANDLE_SHOW_MODAL,
+  HANDLE_CLOSE_ACTION_MODAL,
+  HANDLE_CLOSE_NOTIFICATION_MODAL,
+  HANDLE_SHOW_ACTION_MODAL,
+  HANDLE_SHOW_NOTIFICATION_MODAL,
   LOADING_PENDING,
   LOADING_SUCCESS,
 } from '../actions';
@@ -13,10 +15,18 @@ export const loadingSuccessAC = () => ({
   type: LOADING_SUCCESS,
 });
 
-export const handleShowModalAC = () => ({
-  type: HANDLE_SHOW_MODAL,
+export const handleShowNotificationModalAC = () => ({
+  type: HANDLE_SHOW_NOTIFICATION_MODAL,
 });
 
-export const handleCloseModalAC = () => ({
-  type: HANDLE_CLOSE_MODAL,
+export const handleCloseNotificationModalAC = () => ({
+  type: HANDLE_CLOSE_NOTIFICATION_MODAL,
+});
+
+export const handleShowActionModalAC = () => ({
+  type: HANDLE_SHOW_ACTION_MODAL,
+});
+
+export const handleCloseActionModalAC = () => ({
+  type: HANDLE_CLOSE_ACTION_MODAL,
 });

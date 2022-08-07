@@ -37,7 +37,7 @@ const AddProjectForm = ({ createNewProject, closeModal }) => {
         />
       </Form.Group>
       <div className='d-flex justify-content-end'>
-        <Button variant='secondary' type='submit' className='me-1'>
+        <Button type='submit' className='me-1 button-primary'>
           Create
         </Button>
         <Button variant='secondary' onClick={closeModal}>

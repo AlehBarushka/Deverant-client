@@ -76,7 +76,7 @@ const SignUpForm = ({ signUp, isLoading }) => {
           {formik.errors.passwordConfirm}
         </Form.Control.Feedback>
       </Form.Group>
-      <Button variant='secondary' disabled={isLoading} type='submit'>
+      <Button className='button-primary' disabled={isLoading} type='submit'>
         Sign Up
       </Button>
     </Form>

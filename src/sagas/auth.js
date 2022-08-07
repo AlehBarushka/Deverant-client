@@ -4,7 +4,7 @@ import { GET_AUTH_STATUS_PENDING, LOGIN_PENDING, LOGOUT_PENDING, SIGNUP_PENDING 
 import { KEY_NAMES } from '../constants/localStorage';
 
 import {
-  handleShowModalAC,
+  handleShowNotificationModalAC,
   loadingPendingAC,
   loadingSuccessAC,
 } from '../actionCreators/application';
@@ -38,7 +38,7 @@ function* login({ payload }) {
 
     yield put(authFailureAC(errorMessage));
     yield put(loadingSuccessAC());
-    yield put(handleShowModalAC());
+    yield put(handleShowNotificationModalAC());
   }
 }
 
@@ -57,7 +57,7 @@ function* signUp({ payload }) {
 
     yield put(authFailureAC(errorMessage));
     yield put(loadingSuccessAC());
-    yield put(handleShowModalAC());
+    yield put(handleShowNotificationModalAC());
   }
 }
 

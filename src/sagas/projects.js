@@ -8,7 +8,8 @@ import {
 import { KEY_NAMES } from '../constants/localStorage';
 
 import {
-  handleCloseModalAC,
+  handleCloseActionModalAC,
+  handleShowNotificationModalAC,
   loadingPendingAC,
   loadingSuccessAC,
 } from '../actionCreators/application';
@@ -25,7 +26,7 @@ import {
 import { projectsAPI } from '../services/projects';
 
 import { getItemFromLocalStorage } from '../utils/localStorage';
-import { getAuthSatatusError } from '../utils/errorHandling';
+import { apiResponseErrorDataConverter, getAuthSatatusError } from '../utils/errorHandling';
 
 function* getProjects({ payload }) {
   try {
@@ -62,11 +63,13 @@ function* createNewProject({ payload }) {
     yield call(projectsAPI.createNewProject, token, projectName, projectDescription);
     yield put(createNewProjectSucessAC());
 
-    yield put(handleCloseModalAC());
+    yield put(handleCloseActionModalAC());
 
     yield put(getProjectsAC());
   } catch (error) {
+    yield put(handleCloseActionModalAC());
     yield put(createNewProjectFailureAC(error.message));
+    yield put(handleShowNotificationModalAC());
   }
 }
 
@@ -82,8 +85,11 @@ function* deleteProject({ payload }) {
     yield put(deleteProjectSucessAC());
 
     yield put(getProjectsAC());
-  } catch (error) {
-    yield put(deleteProjectFailureAC(error.message));
+  } catch ({ response: { data } }) {
+    const errorMessage = yield apiResponseErrorDataConverter(data);
+
+    yield put(deleteProjectFailureAC(errorMessage));
+    yield put(handleShowNotificationModalAC());
   }
 }
 
