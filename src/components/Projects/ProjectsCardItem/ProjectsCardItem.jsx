@@ -13,7 +13,7 @@ const ProjectsCardItem = ({ project, convertLastUpdateTime, deleteProject }) => 
   return (
     <Card>
       <Card.Header className='d-flex justify-content-end'>
-        <Button size='sm' className='btn-delete' onClick={handleDelete}>
+        <Button size='sm' className='button-primary' onClick={handleDelete}>
           <RiDeleteBinLine />
         </Button>
       </Card.Header>

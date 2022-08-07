@@ -8,36 +8,11 @@ body {
   font-family: 'Ubuntu', sans-serif;
   min-height: 100vh;
   position: relative;
-  padding-bottom: 1rem;
+  padding-bottom: 5rem;
 }
 
 .header {
   background-color: var(--main-color);
-}
-
-.header-button {
-  color: rgba(255, 255, 255, 0.55);
-  border-color: rgba(255, 255, 255, 0.55);
-}
-
-.add__project-button {
-  background-color: var(--main-color);
-  color: rgba(255, 255, 255);
-  border-color: rgba(255, 255, 255, 0.55);
-}
-
-.add__project-button:hover,
-.add__project-button:active,
-.add__project-button:focus {
-  background-color: #730673;
-  border-color: var(--main-color);
-  box-shadow: 0 0 0 0.25rem #cacccf6e;
-}
-
-.header-button:hover,
-.header-button:active {
-  color: var(--main-color);
-  border-color: var(--main-color);
 }
 
 .auth-title {
@@ -64,6 +39,10 @@ body {
   border-color: rgba(255, 255, 255, 0.55);
 }
 
+.page-link:focus {
+  box-shadow: 0 0 0 0.25rem #9e518f83;
+}
+
 .footer {
   width: 100%;
   font-size: 0.8rem;
@@ -75,15 +54,46 @@ body {
   height: 100%;
 }
 
-.btn-delete {
+.button-primary {
   background-color: var(--main-color);
-  border: var(--main-color);
+  color: rgba(255, 255, 255);
+  border: none;
 }
 
-.btn-delete:hover,
-.btn-delete:focus,
-.btn-delete:active {
-  background-color: #730673;
+.button-primary:hover,
+.button-primary:active:focus,
+.button-primary:active {
+  background-color: #a307a3;
+  color: rgba(255, 255, 255);
   border-color: var(--main-color);
-  box-shadow: 0 0 0 0.25rem #cacccf6e;
+  box-shadow: 0 0 0 0.25rem #9e518f83;
+}
+
+.button-primary:disabled {
+  background-color: #a307a348;
+}
+
+.button-primary:focus {
+  background-color: var(--main-color) !important;
+  color: rgba(255, 255, 255) !important ;
+  border-color: var(--main-color);
+  box-shadow: 0 0 0 0.25rem #9e518f83;
+}
+
+.header-button {
+  color: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.55);
+  background-color: var(--main-color);
+}
+
+.header-button:hover,
+.header-button:active:focus {
+  color: var(--main-color);
+  border-color: var(--main-color);
+  background-color: rgba(255, 255, 255);
+  box-shadow: 0 0 0 0.25rem #a08aaa6e;
+}
+
+.pagination {
+  bottom: 2rem;
 }

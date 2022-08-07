@@ -2,6 +2,7 @@ import {
   CREATE_NEW_PROJECT_FAILURE,
   CREATE_NEW_PROJECT_PENDING,
   CREATE_NEW_PROJECT_SUCCESS,
+  DELETE_PROJECT_FAILURE,
   DELETE_PROJECT_PENDING,
   DELETE_PROJECT_SUCCESS,
   GET_PROJECTS_FAILURE,
@@ -48,6 +49,6 @@ export const deleteProjectSucessAC = () => ({
 });
 
 export const deleteProjectFailureAC = error => ({
-  type: DELETE_PROJECT_PENDING,
+  type: DELETE_PROJECT_FAILURE,
   payload: error,
 });

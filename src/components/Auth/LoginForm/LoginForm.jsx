@@ -49,7 +49,7 @@ const LoginForm = ({ login, isLoading }) => {
           />
           <Form.Control.Feedback type='invalid'>{formik.errors.password}</Form.Control.Feedback>
         </Form.Group>
-        <Button variant='secondary' disabled={isLoading} type='submit'>
+        <Button className='button-primary' disabled={isLoading} type='submit'>
           Login
         </Button>
       </Form>

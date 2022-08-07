@@ -1,26 +1,13 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-
-import { NAV_ITEMS } from '../../constants/navbar';
 
 import { MdBarChart } from 'react-icons/md';
-import { Container, Navbar, Nav, NavbarBrand, NavLink, NavItem } from 'react-bootstrap';
+import { Container, Navbar, NavbarBrand } from 'react-bootstrap';
 
 import AuthButtons from '../Auth/AuthButtons';
 import LogoutButton from '../Auth/LogoutButton';
+import NavMenu from './NavMenu';
 
 const Header = ({ isAuthenticated, logout }) => {
-  const location = useLocation();
-
-  const getNavItems = () =>
-    NAV_ITEMS.map(({ link, title }, index) => (
-      <NavItem key={index}>
-        <NavLink eventKey={link} as={Link} to={link}>
-          {title}
-        </NavLink>
-      </NavItem>
-    ));
-
   return (
     <Navbar collapseOnSelect className='header' expand='md' variant='dark'>
       <Container>
@@ -30,9 +17,7 @@ const Header = ({ isAuthenticated, logout }) => {
         </NavbarBrand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav activeKey={location.pathname} className='me-auto my-1'>
-            {getNavItems()}
-          </Nav>
+          <NavMenu />
           {isAuthenticated ? <LogoutButton logout={logout} /> : <AuthButtons />}
         </Navbar.Collapse>
       </Container>
