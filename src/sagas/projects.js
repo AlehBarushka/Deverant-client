@@ -4,6 +4,7 @@ import {
   CREATE_NEW_PROJECT_PENDING,
   DELETE_PROJECT_PENDING,
   GET_PROJECTS_PENDING,
+  GET_PROJECT_PENDING,
 } from '../actions';
 import { KEY_NAMES } from '../constants/localStorage';
 
@@ -21,6 +22,7 @@ import {
   getProjectsAC,
   getProjectsFailureAC,
   getProjectsSucessAC,
+  getProjectSucessAC,
 } from '../actionCreators/projects';
 
 import { projectsAPI } from '../services/projects';
@@ -93,10 +95,29 @@ function* deleteProject({ payload }) {
   }
 }
 
+function* getProject({ payload }) {
+  try {
+    yield put(loadingPendingAC());
+
+    const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
+
+    if (!token) {
+      yield getAuthSatatusError();
+    }
+
+    const data = yield call(projectsAPI.getProject, token, payload);
+
+    yield put(getProjectSucessAC(data));
+    yield put(loadingSuccessAC());
+  } catch ({ response: { data } }) {
+    yield put(loadingSuccessAC());
+  }
+}
 export function projectSaga() {
   return all([
     takeEvery(GET_PROJECTS_PENDING, getProjects),
     takeEvery(CREATE_NEW_PROJECT_PENDING, createNewProject),
     takeEvery(DELETE_PROJECT_PENDING, deleteProject),
+    takeEvery(GET_PROJECT_PENDING, getProject),
   ]);
 }

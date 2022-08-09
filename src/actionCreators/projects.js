@@ -8,6 +8,9 @@ import {
   GET_PROJECTS_FAILURE,
   GET_PROJECTS_PENDING,
   GET_PROJECTS_SUCCESS,
+  GET_PROJECT_FAILURE,
+  GET_PROJECT_PENDING,
+  GET_PROJECT_SUCCESS,
 } from '../actions';
 
 export const getProjectsAC = offset => ({
@@ -50,5 +53,20 @@ export const deleteProjectSucessAC = () => ({
 
 export const deleteProjectFailureAC = error => ({
   type: DELETE_PROJECT_FAILURE,
+  payload: error,
+});
+
+export const getProjectAC = id => ({
+  type: GET_PROJECT_PENDING,
+  payload: id,
+});
+
+export const getProjectSucessAC = projectData => ({
+  type: GET_PROJECT_SUCCESS,
+  payload: projectData,
+});
+
+export const getProjectFailureAC = error => ({
+  type: GET_PROJECT_FAILURE,
   payload: error,
 });
