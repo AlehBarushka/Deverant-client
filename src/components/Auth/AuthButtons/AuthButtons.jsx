@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 
 const AuthButtons = () => {
   return (
-    <>
+    <div>
       <Button
         variant='outline-light'
         size='sm'
@@ -22,7 +22,7 @@ const AuthButtons = () => {
         to={'auth/registration'}>
         Sign Up
       </Button>
-    </>
+    </div>
   );
 };
 

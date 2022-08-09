@@ -9,23 +9,23 @@ import NavMenu from './NavMenu';
 
 const Header = ({ isAuthenticated, logout }) => {
   return (
-    <Navbar collapseOnSelect className='header' expand='md' variant='dark'>
+    <Navbar collapseOnSelect expand='md' variant='dark' className='header'>
       <Container>
-        <NavbarBrand className='pt-0 d-flex align-items-center'>
+        <NavbarBrand as={'div'} className='d-flex align-items-center pt-0'>
           <MdBarChart className='me-1 fs-3' />
           <h1 className='fs-3 mb-0'>Deverant</h1>
         </NavbarBrand>
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
-        <Navbar.Collapse id='basic-navbar-nav' className='justify-content-end'>
-          {isAuthenticated ? (
-            <>
+        {isAuthenticated ? (
+          <>
+            <Navbar.Toggle aria-controls='basic-navbar-nav' />
+            <Navbar.Collapse id='basic-navbar-nav'>
               <NavMenu />
               <LogoutButton logout={logout} />
-            </>
-          ) : (
-            <AuthButtons />
-          )}
-        </Navbar.Collapse>
+            </Navbar.Collapse>
+          </>
+        ) : (
+          <AuthButtons />
+        )}
       </Container>
     </Navbar>
   );

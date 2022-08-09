@@ -1,7 +1,13 @@
 import React from 'react';
 
+import { Container } from 'react-bootstrap';
+
 const ProjectDetailsPage = () => {
-  return <div>ProjectDetailsPage</div>;
+  return (
+    <Container>
+      <div>ProjectDetailsPage</div>
+    </Container>
+  );
 };
 
 export default ProjectDetailsPage;

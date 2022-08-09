@@ -65,7 +65,7 @@ const ProjectsPage = ({
         <AddProjectForm createNewProject={createNewProject} closeModal={closeActionModal} />
       </ActionModal>
       <NotificationModal {...notificationModalConfig}>{error}</NotificationModal>
-      <Container className='mt-3 mb-5'>
+      <Container className='mt-3 pb-5'>
         <Button onClick={showActionModal} className='button-primary mb-3'>
           <AiOutlineFileAdd className='me-1' />
           New Project
@@ -91,12 +91,12 @@ const ProjectsPage = ({
                 <div>You have no projects</div>
               )}
             </Row>
-            {totalOfPages > 1 && (
-              <Pagination className='position-absolute start-50 translate-middle-x'>
-                {getPaginationItems()}
-              </Pagination>
-            )}
           </>
+        )}
+        {totalOfPages > 1 && (
+          <Pagination className='position-absolute start-50 translate-middle-x'>
+            {getPaginationItems()}
+          </Pagination>
         )}
       </Container>
     </>
