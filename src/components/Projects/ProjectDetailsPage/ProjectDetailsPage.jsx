@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
-const ProjectDetailsPage = () => {
+import Loader from '../../Loader';
+import EditProjectForm from '../EditProjectForm';
+
+const ProjectDetailsPage = ({ getProject, isLoading, project }) => {
+  const { projectId } = useParams();
+
+  useEffect(() => {
+    getProject(projectId);
+  }, [getProject, projectId]);
+
   return (
-    <Container>
-      <div>ProjectDetailsPage</div>
+    <Container className='mt-3'>
+      <Row className='justify-content-center'>
+        <Col lg={6}>
+          {isLoading ? (
+            <div className='position-absolute top-50 start-50 translate-middle'>
+              <Loader />
+            </div>
+          ) : (
+            <EditProjectForm project={project} />
+          )}
+        </Col>
+      </Row>
     </Container>
   );
 };

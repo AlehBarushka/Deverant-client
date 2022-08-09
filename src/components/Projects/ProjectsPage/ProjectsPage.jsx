@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import { Col, Container, Pagination, Row } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
-import { AiOutlineFileAdd } from 'react-icons/ai';
-
 import { LIMIT_OF_PROJECTS } from '../../../constants/pagination';
 import { MODAL_TITLE_TEXT } from '../../../constants/modal';
+
+import { Col, Container, Pagination, Row, Button } from 'react-bootstrap';
+import { AiOutlineFileAdd } from 'react-icons/ai';
 
 import { getTotalPages } from '../../../utils/pagination';
 
