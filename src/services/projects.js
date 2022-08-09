@@ -52,4 +52,16 @@ export const projectsAPI = {
 
     return data;
   },
+
+  /**
+   * @description The method get project by id.
+   * @param {Srting} token - Auth user token.
+   * @param {Number} id - Project id.
+   * @returns {Object} An object with project data.
+   */
+  async getProject(token, id) {
+    const { data } = await axios.get(`${BASE_URL}project/${token}?project_id=${id}`);
+
+    return data;
+  },
 };
