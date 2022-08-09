@@ -12,7 +12,29 @@ body {
 }
 
 .header {
+  /* min-height: 80px; */
   background-color: var(--main-color);
+}
+
+.header-button {
+  color: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.55);
+  background-color: var(--main-color);
+}
+
+.header-button:focus {
+  color: var(--main-color);
+  border-color: var(--main-color);
+  background-color: rgba(255, 255, 255);
+  box-shadow: 0 0 0 0.25rem #a08aaa6e;
+}
+
+.header-button:hover,
+.header-button:active:focus {
+  color: var(--main-color);
+  border-color: var(--main-color);
+  background-color: rgba(255, 255, 255);
+  box-shadow: 0 0 0 0.25rem #a08aaa6e;
 }
 
 .auth-title {
@@ -22,6 +44,11 @@ body {
 .form-control:focus {
   border-color: rgba(255, 255, 255, 0.55);
   box-shadow: 0 0 0 0.25rem #41464b6e;
+}
+
+.form-control[readonly] {
+  border: 1px solid #ced4da;
+  box-shadow: none;
 }
 
 .spinner-border {
@@ -54,23 +81,59 @@ body {
   height: 100%;
 }
 
+.card__delete-btn {
+  padding: 0;
+  margin-left: 10px;
+  color: #6c757d;
+  border: none;
+  box-shadow: none;
+}
+
+.card__info-btn {
+  padding: 0;
+  color: var(--main-color);
+  border: none;
+  box-shadow: none;
+}
+
+.card__info-btn:hover,
+.card__info-btn:active,
+.card__delete-btn:focus {
+  padding: 0;
+  color: #660666;
+  border: none;
+  box-shadow: none;
+}
+
+.card__delete-btn:hover,
+.card__delete-btn:active,
+.card__delete-btn:focus {
+  color: #5c636a;
+  border: none;
+  box-shadow: none;
+}
+
 .button-primary {
   background-color: var(--main-color);
   color: rgba(255, 255, 255);
-  border: none;
+  border: #a307a3;
 }
 
 .button-primary:hover,
-.button-primary:active:focus,
 .button-primary:active {
-  background-color: #a307a3;
+  background-color: #660666;
+  color: rgba(255, 255, 255);
+}
+
+.button-primary:focus:active {
+  background-color: #660666;
   color: rgba(255, 255, 255);
   border-color: var(--main-color);
   box-shadow: 0 0 0 0.25rem #9e518f83;
 }
 
 .button-primary:disabled {
-  background-color: #a307a348;
+  background-color: #9c099c48;
 }
 
 .button-primary:focus {
@@ -78,27 +141,6 @@ body {
   color: rgba(255, 255, 255) !important ;
   border-color: var(--main-color);
   box-shadow: 0 0 0 0.25rem #9e518f83;
-}
-
-.header-button {
-  color: rgba(255, 255, 255, 0.55);
-  border-color: rgba(255, 255, 255, 0.55);
-  background-color: var(--main-color);
-}
-
-.header-button:focus {
-  color: var(--main-color);
-  border-color: var(--main-color);
-  background-color: rgba(255, 255, 255);
-  box-shadow: 0 0 0 0.25rem #a08aaa6e;
-}
-
-.header-button:hover,
-.header-button:active:focus {
-  color: var(--main-color);
-  border-color: var(--main-color);
-  background-color: rgba(255, 255, 255);
-  box-shadow: 0 0 0 0.25rem #a08aaa6e;
 }
 
 .pagination {
