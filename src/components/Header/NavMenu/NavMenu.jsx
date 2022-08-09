@@ -17,7 +17,7 @@ const NavMenu = () => {
       </NavItem>
     ));
   return (
-    <Nav activeKey={location.pathname} className='me-auto my-1'>
+    <Nav activeKey={location.pathname} className='me-auto'>
       {getNavItems()}
     </Nav>
   );
