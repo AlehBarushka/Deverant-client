@@ -65,12 +65,11 @@ const ProjectsPage = ({
         <AddProjectForm createNewProject={createNewProject} closeModal={closeActionModal} />
       </ActionModal>
       <NotificationModal {...notificationModalConfig}>{error}</NotificationModal>
-      <Container className='mt-5 mb-5'>
+      <Container className='mt-3 mb-5'>
         <Button onClick={showActionModal} className='button-primary mb-3'>
           <AiOutlineFileAdd className='me-1' />
           New Project
         </Button>
-
         {isLoading ? (
           <div className='position-absolute top-50 start-50 translate-middle'>
             <Loader />

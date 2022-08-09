@@ -16,9 +16,15 @@ const Header = ({ isAuthenticated, logout }) => {
           <h1 className='fs-3 mb-0'>Deverant</h1>
         </NavbarBrand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
-        <Navbar.Collapse id='basic-navbar-nav'>
-          <NavMenu />
-          {isAuthenticated ? <LogoutButton logout={logout} /> : <AuthButtons />}
+        <Navbar.Collapse id='basic-navbar-nav' className='justify-content-end'>
+          {isAuthenticated ? (
+            <>
+              <NavMenu />
+              <LogoutButton logout={logout} />
+            </>
+          ) : (
+            <AuthButtons />
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>

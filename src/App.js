@@ -6,9 +6,10 @@ import { NAV_KEYS } from './constants/navbar';
 import Plug from './components/Plug';
 import AuthContainer from './containers/AuthContainer';
 import HeaderContainer from './containers/HeaderContainer';
-import ProjectsContainer from './containers/ProjectsContainer';
+import ProjectsPageContainer from './containers/ProjectsPageContainer';
 import Footer from './components/Footer';
 import PrivateRoutes from './components/PrivateRoutes/PrivateRoutes';
+import ProjectDetailsPage from './components/Projects/ProjectDetailsPage/ProjectDetailsPage';
 
 const App = ({ isAuthenticated, getAuthStatus }) => {
   useEffect(() => {
@@ -21,7 +22,8 @@ const App = ({ isAuthenticated, getAuthStatus }) => {
       <Routes>
         <Route path='/' element={<PrivateRoutes isAuthenticated={isAuthenticated} />}>
           <Route path={NAV_KEYS.statistics} element={<Plug />} />
-          <Route path={NAV_KEYS.projects} element={<ProjectsContainer />} />
+          <Route path={NAV_KEYS.projects} element={<ProjectsPageContainer />} />
+          <Route path={`${NAV_KEYS.projects}/:projectId`} element={<ProjectDetailsPage />} />
         </Route>
         <Route path='/auth/:type' element={<AuthContainer />} />
       </Routes>

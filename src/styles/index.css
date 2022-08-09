@@ -97,3 +97,12 @@ body {
 .pagination {
   bottom: 2rem;
 }
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-link:hover {
+  color: inherit;
+}

@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { NAV_KEYS } from '../../../constants/navbar';
 
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { Card, Button } from 'react-bootstrap';
@@ -17,13 +20,15 @@ const ProjectsCardItem = ({ project, convertLastUpdateTime, deleteProject }) => 
           <RiDeleteBinLine />
         </Button>
       </Card.Header>
-      <Card.Body>
-        <Card.Title>{project.project_name}</Card.Title>
-        <Card.Text>{project.description}</Card.Text>
-      </Card.Body>
-      <Card.Footer>
-        <span className='text-muted'>{lastUpdateTime}</span>
-      </Card.Footer>
+      <Link to={`${NAV_KEYS.projects}/${project.id}`} className='card-link'>
+        <Card.Body>
+          <Card.Title>{project.project_name}</Card.Title>
+          <Card.Text>{project.description}</Card.Text>
+        </Card.Body>
+        <Card.Footer>
+          <span className='text-muted'>{lastUpdateTime}</span>
+        </Card.Footer>
+      </Link>
     </Card>
   );
 };
