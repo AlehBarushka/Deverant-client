@@ -11,6 +11,7 @@ body {
   padding-bottom: 5rem;
 }
 
+/* For header */
 .header {
   /* min-height: 80px; */
   background-color: var(--main-color);
@@ -36,11 +37,13 @@ body {
   background-color: rgba(255, 255, 255);
   box-shadow: 0 0 0 0.25rem #a08aaa6e;
 }
+/*  */
 
 .auth-title {
   color: var(--main-color);
 }
 
+/* Form inputs */
 .form-control:focus {
   border-color: rgba(255, 255, 255, 0.55);
   box-shadow: 0 0 0 0.25rem #41464b6e;
@@ -50,10 +53,11 @@ body {
   border: 1px solid #ced4da;
   box-shadow: none;
 }
+/*  */
 
-.spinner-border {
-  border-color: var(--main-color);
-  border-right-color: transparent;
+/* For Pagination */
+.pagination {
+  bottom: 2rem;
 }
 
 .page-link,
@@ -69,6 +73,7 @@ body {
 .page-link:focus {
   box-shadow: 0 0 0 0.25rem #9e518f83;
 }
+/*  */
 
 .footer {
   width: 100%;
@@ -77,30 +82,31 @@ body {
   bottom: 0;
 }
 
+/* For projects cards */
 .card {
   height: 100%;
+  transition: transform 0.5s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.card-link:hover {
+  color: inherit;
 }
 
 .card__delete-btn {
   padding: 0;
   margin-left: 10px;
   color: #6c757d;
-  border: none;
-  box-shadow: none;
-}
-
-.card__info-btn {
-  padding: 0;
-  color: var(--main-color);
-  border: none;
-  box-shadow: none;
-}
-
-.card__info-btn:hover,
-.card__info-btn:active,
-.card__delete-btn:focus {
-  padding: 0;
-  color: #660666;
   border: none;
   box-shadow: none;
 }
@@ -112,6 +118,7 @@ body {
   border: none;
   box-shadow: none;
 }
+/*  */
 
 .button-primary {
   background-color: var(--main-color);
@@ -143,15 +150,7 @@ body {
   box-shadow: 0 0 0 0.25rem #9e518f83;
 }
 
-.pagination {
-  bottom: 2rem;
-}
-
-.card-link {
-  text-decoration: none;
-  color: inherit;
-}
-
-.card-link:hover {
-  color: inherit;
+.spinner-border {
+  border-color: var(--main-color);
+  border-right-color: transparent;
 }
