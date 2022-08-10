@@ -14,7 +14,7 @@ const ProjectDetailsPage = ({ getProject, isLoading, project }) => {
   }, [getProject, projectId]);
 
   return (
-    <Container className='mt-3'>
+    <Container className='mt-5'>
       <Row className='justify-content-center'>
         <Col lg={6}>
           {isLoading ? (

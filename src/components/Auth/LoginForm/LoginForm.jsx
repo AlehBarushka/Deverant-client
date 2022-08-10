@@ -21,12 +21,12 @@ const LoginForm = ({ login, isLoading }) => {
   return (
     <>
       <Form noValidate onSubmit={formik.handleSubmit}>
-        <h3 className='text-center mb-3 auth-title'>
+        <h2 className='text-center fs-3 mb-3 title'>
           <BiLogIn className='me-1 fs-5' />
           Login
-        </h3>
+        </h2>
         <Form.Group className='mb-3'>
-          <Form.Label className='mb-1'>Email:</Form.Label>
+          <Form.Label>Email:</Form.Label>
           <Form.Control
             name='email'
             type='email'
@@ -38,7 +38,7 @@ const LoginForm = ({ login, isLoading }) => {
           <Form.Control.Feedback type='invalid'>{formik.errors.email}</Form.Control.Feedback>
         </Form.Group>
         <Form.Group className='mb-3'>
-          <Form.Label className='mb-1'>Password:</Form.Label>
+          <Form.Label>Password:</Form.Label>
           <Form.Control
             name='password'
             type='password'

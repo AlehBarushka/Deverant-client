@@ -13,7 +13,7 @@ body {
 
 /* For header */
 .header {
-  /* min-height: 80px; */
+  min-height: 60px;
   background-color: var(--main-color);
 }
 
@@ -39,7 +39,7 @@ body {
 }
 /*  */
 
-.auth-title {
+.title {
   color: var(--main-color);
 }
 
@@ -52,6 +52,10 @@ body {
 .form-control[readonly] {
   border: 1px solid #ced4da;
   box-shadow: none;
+}
+
+.form-label {
+  margin: 0;
 }
 /*  */
 
