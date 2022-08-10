@@ -47,6 +47,7 @@ const ProjectsPage = ({
     for (let pageNumber = 1; pageNumber <= totalOfPages; pageNumber++) {
       items.push(
         <Pagination.Item
+          className='pagination__link'
           key={pageNumber}
           active={pageNumber === activePage}
           onClick={() => changePage(pageNumber)}>
