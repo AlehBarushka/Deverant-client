@@ -18,7 +18,7 @@ const AuthPage = ({ auth, isLoading, login, signUp, notificationModalConfig }) =
   ) : (
     <>
       <NotificationModal {...notificationModalConfig}>{error}</NotificationModal>
-      <Container className='mt-5 pt-5'>
+      <Container className='mt-5'>
         <Row className='justify-content-center'>
           <Col lg={6}>
             {type === 'registration' ? (

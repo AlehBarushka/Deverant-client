@@ -5,22 +5,27 @@ import {
   DELETE_PROJECT_SUCCESS,
   GET_PROJECTS_FAILURE,
   GET_PROJECTS_SUCCESS,
+  GET_PROJECT_SUCCESS,
   LOGOUT_SUCCESS,
 } from '../actions';
 
 const initialState = {
   total: null,
   projects: [],
+  currentProject: {},
   error: null,
 };
 
 const projectsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_PROJECTS_SUCCESS:
-      return { ...state, projects: payload.projects, total: payload.total_count, error: null };
+      return { ...initialState, projects: payload.projects, total: payload.total_count };
+
+    case GET_PROJECT_SUCCESS:
+      return { ...state, currentProject: payload };
 
     case GET_PROJECTS_FAILURE:
-      return { ...state, error: payload };
+      return { ...initialState, error: payload };
 
     case CREATE_NEW_PROJECT_SUCCESS:
     case DELETE_PROJECT_SUCCESS:

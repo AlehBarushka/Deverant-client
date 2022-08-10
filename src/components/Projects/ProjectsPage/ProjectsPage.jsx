@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import { Col, Container, Pagination, Row } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
-import { AiOutlineFileAdd } from 'react-icons/ai';
-
 import { LIMIT_OF_PROJECTS } from '../../../constants/pagination';
 import { MODAL_TITLE_TEXT } from '../../../constants/modal';
+
+import { Col, Container, Pagination, Row, Button } from 'react-bootstrap';
+import { AiOutlineFileAdd } from 'react-icons/ai';
 
 import { getTotalPages } from '../../../utils/pagination';
 
@@ -48,6 +47,7 @@ const ProjectsPage = ({
     for (let pageNumber = 1; pageNumber <= totalOfPages; pageNumber++) {
       items.push(
         <Pagination.Item
+          className='pagination__item'
           key={pageNumber}
           active={pageNumber === activePage}
           onClick={() => changePage(pageNumber)}>
@@ -65,12 +65,11 @@ const ProjectsPage = ({
         <AddProjectForm createNewProject={createNewProject} closeModal={closeActionModal} />
       </ActionModal>
       <NotificationModal {...notificationModalConfig}>{error}</NotificationModal>
-      <Container className='mt-5 mb-5'>
+      <Container className='mt-3 pb-5'>
         <Button onClick={showActionModal} className='button-primary mb-3'>
           <AiOutlineFileAdd className='me-1' />
           New Project
         </Button>
-
         {isLoading ? (
           <div className='position-absolute top-50 start-50 translate-middle'>
             <Loader />
@@ -92,12 +91,12 @@ const ProjectsPage = ({
                 <div>You have no projects</div>
               )}
             </Row>
-            {totalOfPages > 1 && (
-              <Pagination className='position-absolute start-50 translate-middle-x'>
-                {getPaginationItems()}
-              </Pagination>
-            )}
           </>
+        )}
+        {totalOfPages > 1 && (
+          <Pagination className='position-absolute start-50 translate-middle-x'>
+            {getPaginationItems()}
+          </Pagination>
         )}
       </Container>
     </>

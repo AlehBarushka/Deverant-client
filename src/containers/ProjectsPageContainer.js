@@ -6,7 +6,7 @@ import { createNewProjectAC, deleteProjectAC, getProjectsAC } from '../actionCre
 
 import { convertLastUpdateTime } from '../utils/date';
 
-import ProjectsPage from '../components/Projects/ProjectsPage';
+import ProjectsPage from '../components/Projects/ProjectsPage/ProjectsPage';
 import {
   handleCloseActionModalAC,
   handleCloseNotificationModalAC,
