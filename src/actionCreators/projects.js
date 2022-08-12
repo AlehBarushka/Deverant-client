@@ -11,6 +11,9 @@ import {
   GET_PROJECT_FAILURE,
   GET_PROJECT_PENDING,
   GET_PROJECT_SUCCESS,
+  UPDATE_PROJECT_FAILURE,
+  UPDATE_PROJECT_PENDING,
+  UPDATE_PROJECT_SUCCESS,
 } from '../actions';
 
 export const getProjectsAC = offset => ({
@@ -68,5 +71,19 @@ export const getProjectSuccessAC = projectData => ({
 
 export const getProjectFailureAC = error => ({
   type: GET_PROJECT_FAILURE,
+  payload: error,
+});
+
+export const updateProjectAC = projectData => ({
+  type: UPDATE_PROJECT_PENDING,
+  payload: projectData,
+});
+
+export const updateProjectSuccessAC = () => ({
+  type: UPDATE_PROJECT_SUCCESS,
+});
+
+export const updateProjectFailureAC = error => ({
+  type: UPDATE_PROJECT_FAILURE,
   payload: error,
 });
