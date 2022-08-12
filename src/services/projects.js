@@ -42,6 +42,7 @@ export const projectsAPI = {
 
     //The server part returns the status code 200 if the token is not valid. I had to throw the error manually
     apiErrorHandle(data);
+
     return data;
   },
 
@@ -80,6 +81,9 @@ export const projectsAPI = {
     const { data } = await axios.put(
       `${BASE_URL}project/${token}?project_id=${id}&name=${title}&description=${description}`,
     );
+
+    //The server part returns the status code 200 if the token is not valid. I had to throw the error manually
+    apiErrorHandle(data);
 
     return data;
   },

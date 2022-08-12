@@ -5,6 +5,7 @@ import {
   DELETE_PROJECT_PENDING,
   GET_PROJECTS_PENDING,
   GET_PROJECT_PENDING,
+  UPDATE_PROJECT_PENDING,
 } from '../actions';
 import { KEY_NAMES } from '../constants/localStorage';
 
@@ -19,10 +20,14 @@ import {
   createNewProjectSuccessAC,
   deleteProjectFailureAC,
   deleteProjectSuccessAC,
+  getProjectAC,
+  getProjectFailureAC,
   getProjectsAC,
   getProjectsFailureAC,
   getProjectsSuccessAC,
   getProjectSuccessAC,
+  updateProjectFailureAC,
+  updateProjectSuccessAC,
 } from '../actionCreators/projects';
 
 import { projectsAPI } from '../services/projects';
@@ -49,6 +54,7 @@ function* getProjects({ payload }) {
     yield put(getProjectsFailureAC(error.message));
 
     yield put(loadingSuccessAC());
+    yield put(handleShowNotificationModalAC());
   }
 }
 
@@ -68,7 +74,9 @@ function* createNewProject({ payload }) {
     yield put(getProjectsAC());
   } catch (error) {
     yield put(handleCloseActionModalAC());
+
     yield put(createNewProjectFailureAC(error.message));
+
     yield put(handleShowNotificationModalAC());
   }
 }
@@ -108,7 +116,35 @@ function* getProject({ payload }) {
     yield put(getProjectSuccessAC(data));
     yield put(loadingSuccessAC());
   } catch ({ response: { data } }) {
+    const errorMessage = yield apiResponseErrorDataConverter(data);
+
+    yield put(getProjectFailureAC(errorMessage));
     yield put(loadingSuccessAC());
+    yield put(handleShowNotificationModalAC());
+  }
+}
+
+function* updateProject({ payload }) {
+  try {
+    const { id, title, description } = payload;
+
+    yield put(loadingPendingAC());
+
+    const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
+
+    if (!token) {
+      yield getAuthStatusError();
+    }
+
+    yield call(projectsAPI.updateProject, token, id, { title, description });
+    yield put(updateProjectSuccessAC());
+
+    yield put(getProjectAC(id));
+  } catch (error) {
+    yield put(updateProjectFailureAC(error.message));
+
+    yield put(loadingSuccessAC());
+    yield put(handleShowNotificationModalAC());
   }
 }
 
@@ -118,5 +154,6 @@ export function projectSaga() {
     takeEvery(CREATE_NEW_PROJECT_PENDING, createNewProject),
     takeEvery(DELETE_PROJECT_PENDING, deleteProject),
     takeEvery(GET_PROJECT_PENDING, getProject),
+    takeEvery(UPDATE_PROJECT_PENDING, updateProject),
   ]);
 }
