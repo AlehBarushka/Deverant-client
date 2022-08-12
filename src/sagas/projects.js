@@ -16,19 +16,19 @@ import {
 } from '../actionCreators/application';
 import {
   createNewProjectFailureAC,
-  createNewProjectSucessAC,
+  createNewProjectSuccessAC,
   deleteProjectFailureAC,
-  deleteProjectSucessAC,
+  deleteProjectSuccessAC,
   getProjectsAC,
   getProjectsFailureAC,
-  getProjectsSucessAC,
-  getProjectSucessAC,
+  getProjectsSuccessAC,
+  getProjectSuccessAC,
 } from '../actionCreators/projects';
 
 import { projectsAPI } from '../services/projects';
 
 import { getItemFromLocalStorage } from '../utils/localStorage';
-import { apiResponseErrorDataConverter, getAuthSatatusError } from '../utils/errorHandling';
+import { apiResponseErrorDataConverter, getAuthStatusError } from '../utils/errorHandling';
 
 function* getProjects({ payload }) {
   try {
@@ -37,12 +37,12 @@ function* getProjects({ payload }) {
     const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
 
     if (!token) {
-      yield getAuthSatatusError();
+      yield getAuthStatusError();
     }
 
     const data = yield call(projectsAPI.getProjects, token, payload);
 
-    yield put(getProjectsSucessAC(data));
+    yield put(getProjectsSuccessAC(data));
 
     yield put(loadingSuccessAC());
   } catch (error) {
@@ -54,16 +54,14 @@ function* getProjects({ payload }) {
 
 function* createNewProject({ payload }) {
   try {
-    const { projectName, projectDescription } = payload;
-
     const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
 
     if (!token) {
-      yield getAuthSatatusError();
+      yield getAuthStatusError();
     }
 
-    yield call(projectsAPI.createNewProject, token, projectName, projectDescription);
-    yield put(createNewProjectSucessAC());
+    yield call(projectsAPI.createNewProject, token, payload);
+    yield put(createNewProjectSuccessAC());
 
     yield put(handleCloseActionModalAC());
 
@@ -80,11 +78,11 @@ function* deleteProject({ payload }) {
     const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
 
     if (!token) {
-      yield getAuthSatatusError();
+      yield getAuthStatusError();
     }
 
     yield call(projectsAPI.deleteProject, token, payload);
-    yield put(deleteProjectSucessAC());
+    yield put(deleteProjectSuccessAC());
 
     yield put(getProjectsAC());
   } catch ({ response: { data } }) {
@@ -102,17 +100,18 @@ function* getProject({ payload }) {
     const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
 
     if (!token) {
-      yield getAuthSatatusError();
+      yield getAuthStatusError();
     }
 
     const data = yield call(projectsAPI.getProject, token, payload);
 
-    yield put(getProjectSucessAC(data));
+    yield put(getProjectSuccessAC(data));
     yield put(loadingSuccessAC());
   } catch ({ response: { data } }) {
     yield put(loadingSuccessAC());
   }
 }
+
 export function projectSaga() {
   return all([
     takeEvery(GET_PROJECTS_PENDING, getProjects),

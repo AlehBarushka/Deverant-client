@@ -18,7 +18,7 @@ export const getProjectsAC = offset => ({
   payload: offset,
 });
 
-export const getProjectsSucessAC = projectsData => ({
+export const getProjectsSuccessAC = projectsData => ({
   type: GET_PROJECTS_SUCCESS,
   payload: projectsData,
 });
@@ -33,7 +33,7 @@ export const createNewProjectAC = projectData => ({
   payload: projectData,
 });
 
-export const createNewProjectSucessAC = () => ({
+export const createNewProjectSuccessAC = () => ({
   type: CREATE_NEW_PROJECT_SUCCESS,
 });
 
@@ -47,7 +47,7 @@ export const deleteProjectAC = id => ({
   payload: id,
 });
 
-export const deleteProjectSucessAC = () => ({
+export const deleteProjectSuccessAC = () => ({
   type: DELETE_PROJECT_SUCCESS,
 });
 
@@ -61,7 +61,7 @@ export const getProjectAC = id => ({
   payload: id,
 });
 
-export const getProjectSucessAC = projectData => ({
+export const getProjectSuccessAC = projectData => ({
   type: GET_PROJECT_SUCCESS,
   payload: projectData,
 });
