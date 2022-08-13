@@ -11,6 +11,9 @@ import {
   GET_PROJECT_FAILURE,
   GET_PROJECT_PENDING,
   GET_PROJECT_SUCCESS,
+  UPDATE_PROJECT_FAILURE,
+  UPDATE_PROJECT_PENDING,
+  UPDATE_PROJECT_SUCCESS,
 } from '../actions';
 
 export const getProjectsAC = offset => ({
@@ -18,7 +21,7 @@ export const getProjectsAC = offset => ({
   payload: offset,
 });
 
-export const getProjectsSucessAC = projectsData => ({
+export const getProjectsSuccessAC = projectsData => ({
   type: GET_PROJECTS_SUCCESS,
   payload: projectsData,
 });
@@ -33,7 +36,7 @@ export const createNewProjectAC = projectData => ({
   payload: projectData,
 });
 
-export const createNewProjectSucessAC = () => ({
+export const createNewProjectSuccessAC = () => ({
   type: CREATE_NEW_PROJECT_SUCCESS,
 });
 
@@ -47,7 +50,7 @@ export const deleteProjectAC = id => ({
   payload: id,
 });
 
-export const deleteProjectSucessAC = () => ({
+export const deleteProjectSuccessAC = () => ({
   type: DELETE_PROJECT_SUCCESS,
 });
 
@@ -61,12 +64,26 @@ export const getProjectAC = id => ({
   payload: id,
 });
 
-export const getProjectSucessAC = projectData => ({
+export const getProjectSuccessAC = projectData => ({
   type: GET_PROJECT_SUCCESS,
   payload: projectData,
 });
 
 export const getProjectFailureAC = error => ({
   type: GET_PROJECT_FAILURE,
+  payload: error,
+});
+
+export const updateProjectAC = projectData => ({
+  type: UPDATE_PROJECT_PENDING,
+  payload: projectData,
+});
+
+export const updateProjectSuccessAC = () => ({
+  type: UPDATE_PROJECT_SUCCESS,
+});
+
+export const updateProjectFailureAC = error => ({
+  type: UPDATE_PROJECT_FAILURE,
   payload: error,
 });

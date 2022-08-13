@@ -21,7 +21,7 @@ import { authAPI } from '../services/auth';
 
 import { tokenСonverter } from '../utils/authToken';
 import { getItemFromLocalStorage, setItemToLocalStorage } from '../utils/localStorage';
-import { apiResponseErrorDataConverter, getAuthSatatusError } from '../utils/errorHandling';
+import { apiResponseErrorDataConverter, getAuthStatusError } from '../utils/errorHandling';
 
 function* login({ payload }) {
   try {
@@ -85,7 +85,7 @@ function* getAuthStatus() {
 
     const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
     if (!token) {
-      yield getAuthSatatusError();
+      yield getAuthStatusError();
     }
 
     const { email, nickname } = yield call(authAPI.authStatus, token);

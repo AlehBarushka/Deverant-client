@@ -1,12 +1,14 @@
 import { takeEvery, all, call, put } from 'redux-saga/effects';
 
+import { KEY_NAMES } from '../constants/localStorage';
+
 import {
   CREATE_NEW_PROJECT_PENDING,
   DELETE_PROJECT_PENDING,
   GET_PROJECTS_PENDING,
   GET_PROJECT_PENDING,
+  UPDATE_PROJECT_PENDING,
 } from '../actions';
-import { KEY_NAMES } from '../constants/localStorage';
 
 import {
   handleCloseActionModalAC,
@@ -16,19 +18,23 @@ import {
 } from '../actionCreators/application';
 import {
   createNewProjectFailureAC,
-  createNewProjectSucessAC,
+  createNewProjectSuccessAC,
   deleteProjectFailureAC,
-  deleteProjectSucessAC,
+  deleteProjectSuccessAC,
+  getProjectAC,
+  getProjectFailureAC,
   getProjectsAC,
   getProjectsFailureAC,
-  getProjectsSucessAC,
-  getProjectSucessAC,
+  getProjectsSuccessAC,
+  getProjectSuccessAC,
+  updateProjectFailureAC,
+  updateProjectSuccessAC,
 } from '../actionCreators/projects';
 
 import { projectsAPI } from '../services/projects';
 
 import { getItemFromLocalStorage } from '../utils/localStorage';
-import { apiResponseErrorDataConverter, getAuthSatatusError } from '../utils/errorHandling';
+import { apiResponseErrorDataConverter, getAuthStatusError } from '../utils/errorHandling';
 
 function* getProjects({ payload }) {
   try {
@@ -37,40 +43,41 @@ function* getProjects({ payload }) {
     const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
 
     if (!token) {
-      yield getAuthSatatusError();
+      yield getAuthStatusError();
     }
 
     const data = yield call(projectsAPI.getProjects, token, payload);
 
-    yield put(getProjectsSucessAC(data));
+    yield put(getProjectsSuccessAC(data));
 
     yield put(loadingSuccessAC());
   } catch (error) {
     yield put(getProjectsFailureAC(error.message));
 
     yield put(loadingSuccessAC());
+    yield put(handleShowNotificationModalAC());
   }
 }
 
 function* createNewProject({ payload }) {
   try {
-    const { projectName, projectDescription } = payload;
-
     const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
 
     if (!token) {
-      yield getAuthSatatusError();
+      yield getAuthStatusError();
     }
 
-    yield call(projectsAPI.createNewProject, token, projectName, projectDescription);
-    yield put(createNewProjectSucessAC());
+    yield call(projectsAPI.createNewProject, token, payload);
+    yield put(createNewProjectSuccessAC());
 
     yield put(handleCloseActionModalAC());
 
     yield put(getProjectsAC());
   } catch (error) {
     yield put(handleCloseActionModalAC());
+
     yield put(createNewProjectFailureAC(error.message));
+
     yield put(handleShowNotificationModalAC());
   }
 }
@@ -80,11 +87,11 @@ function* deleteProject({ payload }) {
     const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
 
     if (!token) {
-      yield getAuthSatatusError();
+      yield getAuthStatusError();
     }
 
     yield call(projectsAPI.deleteProject, token, payload);
-    yield put(deleteProjectSucessAC());
+    yield put(deleteProjectSuccessAC());
 
     yield put(getProjectsAC());
   } catch ({ response: { data } }) {
@@ -102,22 +109,58 @@ function* getProject({ payload }) {
     const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
 
     if (!token) {
-      yield getAuthSatatusError();
+      yield getAuthStatusError();
     }
 
     const data = yield call(projectsAPI.getProject, token, payload);
 
-    yield put(getProjectSucessAC(data));
+    yield put(getProjectSuccessAC(data));
     yield put(loadingSuccessAC());
   } catch ({ response: { data } }) {
+    const errorMessage = yield apiResponseErrorDataConverter(data);
+
+    yield put(getProjectFailureAC(errorMessage));
     yield put(loadingSuccessAC());
+    yield put(handleShowNotificationModalAC());
   }
 }
+
+function* updateProject({ payload }) {
+  try {
+    const { id, title, description, price } = payload;
+
+    yield put(loadingPendingAC());
+
+    const token = yield call(getItemFromLocalStorage, KEY_NAMES.AUTH_TOKEN);
+
+    if (!token) {
+      yield getAuthStatusError();
+    }
+
+    yield all([
+      call(projectsAPI.updateProject, token, id, { title, description }),
+      call(projectsAPI.updateProjectPrice, token, id, price),
+    ]);
+
+    yield put(updateProjectSuccessAC());
+
+    yield put(getProjectAC(id));
+  } catch ({ response: { data } }) {
+    const errorMessage = yield apiResponseErrorDataConverter(data);
+
+    yield put(updateProjectFailureAC(errorMessage));
+
+    yield put(loadingSuccessAC());
+    yield put(handleShowNotificationModalAC());
+  }
+}
+
 export function projectSaga() {
   return all([
     takeEvery(GET_PROJECTS_PENDING, getProjects),
     takeEvery(CREATE_NEW_PROJECT_PENDING, createNewProject),
     takeEvery(DELETE_PROJECT_PENDING, deleteProject),
     takeEvery(GET_PROJECT_PENDING, getProject),
+    takeEvery(UPDATE_PROJECT_PENDING, updateProject),
   ]);
 }

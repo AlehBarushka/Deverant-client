@@ -3,7 +3,7 @@ export const NAV_KEYS = {
   projects: '/projects',
 };
 
-export const DEFAULT_SELCTED_LINK = NAV_KEYS.statistics;
+export const DEFAULT_SELCTED_LINK = NAV_KEYS.projects;
 
 export const NAV_ITEMS = [
   {

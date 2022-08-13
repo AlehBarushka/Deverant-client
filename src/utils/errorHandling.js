@@ -28,7 +28,7 @@ export const apiResponseErrorDataConverter = apiResponseErrorData => {
  * @description The function return an error.
  * @returns {Error} An Error with auth status error message.
  */
-export const getAuthSatatusError = () => {
+export const getAuthStatusError = () => {
   throw new Error(AUTH_STATUS_ERROR);
 };
 

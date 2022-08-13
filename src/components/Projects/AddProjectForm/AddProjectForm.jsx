@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
 const AddProjectForm = ({ createNewProject, closeModal }) => {
-  const [formData, setFormData] = useState({ projectName: '', projectDescription: '' });
+  const [formData, setFormData] = useState({ title: '', description: '' });
 
   const handleOnChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,18 +19,13 @@ const AddProjectForm = ({ createNewProject, closeModal }) => {
     <Form noValidate onSubmit={handleSubmit}>
       <Form.Group className='mb-3'>
         <Form.Label className='mb-1'>Project name:</Form.Label>
-        <Form.Control
-          name='projectName'
-          type='text'
-          placeholder='Facebook'
-          onChange={handleOnChange}
-        />
+        <Form.Control name='title' type='text' placeholder='Facebook' onChange={handleOnChange} />
       </Form.Group>
       <Form.Group className='mb-3'>
         <Form.Label className='mb-1'>Project description:</Form.Label>
         <Form.Control
           as='textarea'
-          name='projectDescription'
+          name='description'
           type='text'
           placeholder='Some description...'
           onChange={handleOnChange}

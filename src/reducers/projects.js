@@ -5,8 +5,11 @@ import {
   DELETE_PROJECT_SUCCESS,
   GET_PROJECTS_FAILURE,
   GET_PROJECTS_SUCCESS,
+  GET_PROJECT_FAILURE,
   GET_PROJECT_SUCCESS,
   LOGOUT_SUCCESS,
+  UPDATE_PROJECT_FAILURE,
+  UPDATE_PROJECT_SUCCESS,
 } from '../actions';
 
 const initialState = {
@@ -25,13 +28,16 @@ const projectsReducer = (state = initialState, { type, payload }) => {
       return { ...state, currentProject: payload };
 
     case GET_PROJECTS_FAILURE:
+    case GET_PROJECT_FAILURE:
       return { ...initialState, error: payload };
 
     case CREATE_NEW_PROJECT_SUCCESS:
+    case UPDATE_PROJECT_SUCCESS:
     case DELETE_PROJECT_SUCCESS:
       return { ...state, error: null };
 
     case CREATE_NEW_PROJECT_FAILURE:
+    case UPDATE_PROJECT_FAILURE:
     case DELETE_PROJECT_FAILURE:
       return { ...state, error: payload };
 
