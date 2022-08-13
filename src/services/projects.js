@@ -87,4 +87,19 @@ export const projectsAPI = {
 
     return data;
   },
+
+  /**
+   * @description The method update project price.
+   * @param {String} token - Auth user token.
+   * @param {Number} id - Project id.
+   * @param {Number} price - Project price.
+   * @returns {Object} An object with updated project price data.
+   */
+  async updateProjectPrice(token, id, price) {
+    const { data } = await axios.put(
+      `${BASE_URL}project_price/${token}?project_id=${id}&price=${price}`,
+    );
+
+    return data;
+  },
 };

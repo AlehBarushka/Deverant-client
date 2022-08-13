@@ -1,5 +1,7 @@
 import { takeEvery, all, call, put } from 'redux-saga/effects';
 
+import { KEY_NAMES } from '../constants/localStorage';
+
 import {
   CREATE_NEW_PROJECT_PENDING,
   DELETE_PROJECT_PENDING,
@@ -7,7 +9,6 @@ import {
   GET_PROJECT_PENDING,
   UPDATE_PROJECT_PENDING,
 } from '../actions';
-import { KEY_NAMES } from '../constants/localStorage';
 
 import {
   handleCloseActionModalAC,
@@ -126,7 +127,7 @@ function* getProject({ payload }) {
 
 function* updateProject({ payload }) {
   try {
-    const { id, title, description } = payload;
+    const { id, title, description, price } = payload;
 
     yield put(loadingPendingAC());
 
@@ -136,12 +137,18 @@ function* updateProject({ payload }) {
       yield getAuthStatusError();
     }
 
-    yield call(projectsAPI.updateProject, token, id, { title, description });
+    yield all([
+      call(projectsAPI.updateProject, token, id, { title, description }),
+      call(projectsAPI.updateProjectPrice, token, id, price),
+    ]);
+
     yield put(updateProjectSuccessAC());
 
     yield put(getProjectAC(id));
-  } catch (error) {
-    yield put(updateProjectFailureAC(error.message));
+  } catch ({ response: { data } }) {
+    const errorMessage = yield apiResponseErrorDataConverter(data);
+
+    yield put(updateProjectFailureAC(errorMessage));
 
     yield put(loadingSuccessAC());
     yield put(handleShowNotificationModalAC());

@@ -8,6 +8,7 @@ const EditProjectForm = ({ project, updateProject }) => {
   const [projectData, setProjectData] = useState({
     title: project.project_name,
     description: project.description,
+    price: project.money,
   });
 
   const navigate = useNavigate();
@@ -54,7 +55,13 @@ const EditProjectForm = ({ project, updateProject }) => {
           <Form.Label>Cost:</Form.Label>
           <InputGroup className='mb-2'>
             <InputGroup.Text>$</InputGroup.Text>
-            <Form.Control type='number' readOnly={!editMode} value={project.money} />
+            <Form.Control
+              type='number'
+              name='price'
+              readOnly={!editMode}
+              value={projectData.price}
+              onChange={handleOnChange}
+            />
           </InputGroup>
         </Col>
       </Form.Group>
