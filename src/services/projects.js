@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-import { BASE_URL } from '../constants/api';
 import { LIMIT_OF_PROJECTS } from '../constants/pagination';
 
 import { apiErrorHandle } from '../utils/errorHandling';
@@ -20,7 +19,7 @@ export const projectsAPI = {
    */
   async getProjects(token, offset = 0) {
     const { data } = await axios.get(
-      `${BASE_URL}all_projects/${token}?offset=${offset}&limit=${LIMIT_OF_PROJECTS}`,
+      `${process.env.REACT_APP_API_URL}all_projects/${token}?offset=${offset}&limit=${LIMIT_OF_PROJECTS}`,
     );
 
     //The server part returns the status code 200 if the token is not valid. I had to throw the error manually
@@ -37,7 +36,7 @@ export const projectsAPI = {
    */
   async createNewProject(token, { title, description }) {
     const { data } = await axios.post(
-      `${BASE_URL}project/${token}?name=${title}&description=${description}`,
+      `${process.env.REACT_APP_API_URL}project/${token}?name=${title}&description=${description}`,
     );
 
     //The server part returns the status code 200 if the token is not valid. I had to throw the error manually
@@ -53,7 +52,9 @@ export const projectsAPI = {
    * @returns {Object} An object with success status.
    */
   async deleteProject(token, id) {
-    const { data } = await axios.delete(`${BASE_URL}project/${token}?project_id=${id}`);
+    const { data } = await axios.delete(
+      `${process.env.REACT_APP_API_URL}project/${token}?project_id=${id}`,
+    );
 
     return data;
   },
@@ -65,7 +66,9 @@ export const projectsAPI = {
    * @returns {Object} An object with project data.
    */
   async getProject(token, id) {
-    const { data } = await axios.get(`${BASE_URL}project/${token}?project_id=${id}`);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL}project/${token}?project_id=${id}`,
+    );
 
     return data;
   },
@@ -79,7 +82,7 @@ export const projectsAPI = {
    */
   async updateProject(token, id, { title, description }) {
     const { data } = await axios.put(
-      `${BASE_URL}project/${token}?project_id=${id}&name=${title}&description=${description}`,
+      `${process.env.REACT_APP_API_URL}project/${token}?project_id=${id}&name=${title}&description=${description}`,
     );
 
     //The server part returns the status code 200 if the token is not valid. I had to throw the error manually
@@ -97,7 +100,7 @@ export const projectsAPI = {
    */
   async updateProjectPrice(token, id, price) {
     const { data } = await axios.put(
-      `${BASE_URL}project_price/${token}?project_id=${id}&price=${price}`,
+      `${process.env.REACT_APP_API_URL}project_price/${token}?project_id=${id}&price=${price}`,
     );
 
     return data;

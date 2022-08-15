@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-import { BASE_URL } from '../constants/api';
-
 /**
  * @typedef {Object} RegistrationData
  * @property {String} RegistrationData.userName - Username.
@@ -22,7 +20,7 @@ export const authAPI = {
    */
   async createAccount({ userName, email, password }) {
     const { data } = await axios.post(
-      `${BASE_URL}create_account/${email}?password=${password}&user_name=${userName}`,
+      `${process.env.REACT_APP_API_URL}create_account/${email}?password=${password}&user_name=${userName}`,
     );
 
     return data;
@@ -34,7 +32,9 @@ export const authAPI = {
    * @returns {Object} An object with a token.
    */
   async login({ email, password }) {
-    const { data } = await axios.get(`${BASE_URL}login/${email}?password=${password}`);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL}login/${email}?password=${password}`,
+    );
 
     return data;
   },
@@ -45,7 +45,7 @@ export const authAPI = {
    * @returns {Object} An object with a status.
    */
   async logout(token) {
-    await axios.put(`${BASE_URL}logout/${token}`);
+    await axios.put(`${process.env.REACT_APP_API_URL}logout/${token}`);
   },
 
   /**
@@ -54,7 +54,7 @@ export const authAPI = {
    * @returns {Object} An object with a status, email, and userName.
    */
   async authStatus(token) {
-    const { data } = await axios.get(`${BASE_URL}getMe/${token}`);
+    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}getMe/${token}`);
 
     return data;
   },
